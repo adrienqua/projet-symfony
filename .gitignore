@@ -1,25 +1,15 @@
-
-###> symfony/framework-bundle ###
-/.env.local
-/.env.local.php
-/.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
+# Symfony
 /var/
 /vendor/
-###< symfony/framework-bundle ###
+.env.local
+.env.local.php
+.env.*.local
+/public/build/
+/node_modules/
 
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###
-
-###> symfony/phpunit-bridge ###
-.phpunit.result.cache
-/phpunit.xml
-###< symfony/phpunit-bridge ###
-
-###> symfony/asset-mapper ###
-/public/assets/
-/assets/vendor/
-###< symfony/asset-mapper ###
+# Tailwind & Webpack
+.DS_Store
+/postcss.config.js
+/tailwind.config.js
+package-lock.json
+yarn.lock
