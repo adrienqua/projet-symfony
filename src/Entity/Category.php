@@ -21,4 +21,42 @@ class Category
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Offer::class)]
     private $offers;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function getOffers()
+    {
+        return $this->offers;
+    }
+
+    public function setOffers($offers): self
+    {
+        $this->offers = $offers;
+        return $this;
+    }
 }

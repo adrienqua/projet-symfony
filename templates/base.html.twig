@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Plateforme d'Offres et Tâches{% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{% block title %}Plateforme d'Offres et Tâches
+			{% endblock %}
+		</title>
+		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+	</head>
 
-<body class="bg-gray-100 font-sans">
+	<body
+		class="bg-gray-100 font-sans flex flex-col min-h-screen">
 
-<!-- Navbar -->
-<nav class="bg-blue-600 p-4">
-    <div class="container mx-auto flex justify-between items-center text-white">
-        <a href="{{ path('home') }}" class="text-2xl font-bold">Taskify</a>
-        <ul class="flex space-x-6">
-            <li><a href="{{ path('home') }}" class="hover:text-gray-300">Accueil</a></li>
-            <li><a href="" class="hover:text-gray-300">Offres</a></li>
-            <li><a href="" class="hover:text-gray-300">Tâches</a></li>
-            <li><a href="" class="hover:text-gray-300">Connexion</a></li>
-        </ul>
-    </div>
-</nav>
+		<!-- Navbar -->
+		<nav class="bg-blue-600 p-4">
+			<div class="container mx-auto flex justify-between items-center text-white">
+				<a href="{{ path('home') }}" class="text-2xl font-bold">Taskify</a>
+				<ul class="flex space-x-6">
+					<li>
+						<a href="{{ path('home') }}" class="hover:text-gray-300">Accueil</a>
+					</li>
+					<li>
+						<a href="" class="hover:text-gray-300">Offres</a>
+					</li>
+					<li>
+						<a href="" class="hover:text-gray-300">Tâches</a>
+					</li>
+					<li>
+						<a href="" class="hover:text-gray-300">Connexion</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
 
-{% block content %}
-<!-- Content ici -->
-{% endblock %}
+		{% block content %}
+			<!-- Content ici -->
+		{% endblock %}
 
-<!-- Footer -->
-<footer class="bg-gray-800 text-white py-6">
-    <div class="container mx-auto text-center">
-        <p>&copy; 2024 Taskify. Tous droits réservés.</p>
-    </div>
-</footer>
+		{% include 'ui/footer.html.twig' %}
 
-</body>
+	</body>
 
 </html>

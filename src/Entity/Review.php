@@ -27,4 +27,64 @@ class Review
 
     #[ORM\ManyToOne(targetEntity: Offer::class)]
     private Offer $offer;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getRating(): int
+    {
+        return $this->rating;
+    }
+
+    public function setRating(int $rating): self
+    {
+        $this->rating = $rating;
+        return $this;
+    }
+
+    public function getComment(): string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(string $comment): self
+    {
+        $this->comment = $comment;
+        return $this;
+    }
+
+    public function getReviewDate(): \DateTimeInterface
+    {
+        return $this->reviewDate;
+    }
+
+    public function setReviewDate(\DateTimeInterface $reviewDate): self
+    {
+        $this->reviewDate = $reviewDate;
+        return $this;
+    }
+
+    public function getReviewedUser(): User
+    {
+        return $this->reviewedUser;
+    }
+
+    public function setReviewedUser(User $reviewedUser): self
+    {
+        $this->reviewedUser = $reviewedUser;
+        return $this;
+    }
+
+    public function getOffer(): Offer
+    {
+        return $this->offer;
+    }
+
+    public function setOffer(Offer $offer): self
+    {
+        $this->offer = $offer;
+        return $this;
+    }
 }

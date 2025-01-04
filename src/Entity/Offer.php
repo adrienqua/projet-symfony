@@ -36,4 +36,109 @@ class Offer
 
     #[ORM\ManyToMany(targetEntity: Task::class, mappedBy: 'offers')]
     private $tasks;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
+        return $this;
+    }
+
+    public function getCreationDate(): \DateTimeInterface
+    {
+        return $this->creationDate;
+    }
+
+    public function setCreationDate(\DateTimeInterface $creationDate): self
+    {
+        $this->creationDate = $creationDate;
+        return $this;
+    }
+
+    public function getIsAdultContent(): bool
+    {
+        return $this->isAdultContent;
+    }
+
+    public function setIsAdultContent(bool $isAdultContent): self
+    {
+        $this->isAdultContent = $isAdultContent;
+        return $this;
+    }
+
+    public function getProposer(): User
+    {
+        return $this->proposer;
+    }
+
+    public function setProposer(User $proposer): self
+    {
+        $this->proposer = $proposer;
+        return $this;
+    }
+
+    public function getCategory(): Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(Category $category): self
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    public function getTasks()
+    {
+        return $this->tasks;
+    }
+
+    public function addTask(Task $task): self
+    {
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->addOffer($this);
+        }
+        return $this;
+    }
+
+    public function removeTask(Task $task): self
+    {
+        if ($this->tasks->contains($task)) {
+            $this->tasks->removeElement($task);
+            $task->removeOffer($this);
+        }
+        return $this;
+    }
 }

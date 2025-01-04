@@ -24,4 +24,53 @@ class Payment
 
     #[ORM\Column(type: 'string')]
     private string $method;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getAmount(): float
+    {
+        return $this->amount;
+    }
+
+    public function setAmount(float $amount): self
+    {
+        $this->amount = $amount;
+        return $this;
+    }
+
+    public function getPaymentDate(): \DateTimeInterface
+    {
+        return $this->paymentDate;
+    }
+
+    public function setPaymentDate(\DateTimeInterface $paymentDate): self
+    {
+        $this->paymentDate = $paymentDate;
+        return $this;
+    }
+
+    public function getContract(): Contract
+    {
+        return $this->contract;
+    }
+
+    public function setContract(Contract $contract): self
+    {
+        $this->contract = $contract;
+        return $this;
+    }
+
+    public function getMethod(): string
+    {
+        return $this->method;
+    }
+
+    public function setMethod(string $method): self
+    {
+        $this->method = $method;
+        return $this;
+    }
 }
