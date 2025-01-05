@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\PaymentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: PaymentRepository::class)]
 class Payment
 {
     #[ORM\Id]
@@ -16,8 +16,8 @@ class Payment
     #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
     private float $amount;
 
-    #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $paymentDate;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private \DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(targetEntity: Contract::class, inversedBy: 'payments')]
     private Contract $contract;
@@ -35,29 +35,28 @@ class Payment
         return $this->amount;
     }
 
-    public function setAmount(float $amount): self
+    public function setAmount(float $amount): static
     {
         $this->amount = $amount;
         return $this;
     }
 
-    public function getPaymentDate(): \DateTimeInterface
+    public function getCreatedAt(): \DateTimeImmutable
     {
-        return $this->paymentDate;
+        return $this->createdAt;
     }
 
-    public function setPaymentDate(\DateTimeInterface $paymentDate): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
-        $this->paymentDate = $paymentDate;
+        $this->createdAt = $createdAt;
         return $this;
     }
-
     public function getContract(): Contract
     {
         return $this->contract;
     }
 
-    public function setContract(Contract $contract): self
+    public function setContract(Contract $contract): static
     {
         $this->contract = $contract;
         return $this;
@@ -68,7 +67,7 @@ class Payment
         return $this->method;
     }
 
-    public function setMethod(string $method): self
+    public function setMethod(string $method): static
     {
         $this->method = $method;
         return $this;

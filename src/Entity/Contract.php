@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\ContractRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: ContractRepository::class)]
 class Contract
 {
     #[ORM\Id]
@@ -16,8 +16,8 @@ class Contract
     #[ORM\Column(type: 'string')]
     private string $status;
 
-    #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $creationDate;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private \DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(targetEntity: Task::class)]
     private Task $task;
@@ -27,7 +27,7 @@ class Contract
 
     #[ORM\OneToMany(mappedBy: 'contract', targetEntity: Payment::class)]
     private $payments;
-    
+
     public function getId(): int
     {
         return $this->id;
@@ -38,20 +38,20 @@ class Contract
         return $this->status;
     }
 
-    public function setStatus(string $status): self
+    public function setStatus(string $status): static
     {
         $this->status = $status;
         return $this;
     }
 
-    public function getCreationDate(): \DateTimeInterface
+    public function getCreatedAt(): \DateTimeImmutable
     {
-        return $this->creationDate;
+        return $this->createdAt;
     }
 
-    public function setCreationDate(\DateTimeInterface $creationDate): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
-        $this->creationDate = $creationDate;
+        $this->createdAt = $createdAt;
         return $this;
     }
 
@@ -60,7 +60,7 @@ class Contract
         return $this->task;
     }
 
-    public function setTask(Task $task): self
+    public function setTask(Task $task): static
     {
         $this->task = $task;
         return $this;
@@ -71,13 +71,13 @@ class Contract
         return $this->messages;
     }
 
-    public function addMessage(Message $message): self
+    public function addMessage(Message $message): static
     {
         $this->messages[] = $message;
         return $this;
     }
 
-    public function removeMessage(Message $message): self
+    public function removeMessage(Message $message): static
     {
         $this->messages->removeElement($message);
         return $this;
@@ -88,13 +88,13 @@ class Contract
         return $this->payments;
     }
 
-    public function addPayment(Payment $payment): self
+    public function addPayment(Payment $payment): static
     {
         $this->payments[] = $payment;
         return $this;
     }
 
-    public function removePayment(Payment $payment): self
+    public function removePayment(Payment $payment): static
     {
         $this->payments->removeElement($payment);
         return $this;

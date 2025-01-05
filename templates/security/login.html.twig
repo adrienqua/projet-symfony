@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!
+{% endblock %}
+
+{% block content %}
+	<form method="post" class=" mx-auto flex flex-col items-center">
+		{% if error %}
+			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
+
+		{% if app.user %}
+			<div class="mb-3">
+				You are logged in as
+				{{ app.user.userIdentifier }},
+				<a href="{{ path('app_logout') }}">Logout</a>
+			</div>
+		{% endif %}
+
+		<div class="max-w-80 w-full mx-auto p-6 bg-white shadow-md rounded-2xl">
+
+			<h1 class="h3 mb-3 font-semibold text-2xl  text-center">Se connecter</h1>
+			<div class="flex flex-col mb-2">
+				<label for="username">Email</label>
+				<input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control p-2 rounded-lg bg-gray-100" autocomplete="email" required autofocus>
+			</div>
+			<div class="flex flex-col mb-2">
+				<label for="password">Password</label>
+				<input type="password" name="_password" id="password" class="form-control p-2 rounded-lg bg-gray-100" autocomplete="current-password" required>
+			</div>
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+			<div class="checkbox mb-3">
+				<label>
+					<input type="checkbox" name="_remember_me">
+					Se souvenir de moi
+				</label>
+			</div>
+
+			<div class="flex flex-col items-center">
+				<button class="mb-4 btn-lg bg-green-400 hover:bg-green-300 text-sm font-medium  transition-all duration-300 rounded-lg px-4 py-2" type="submit">
+					Se connecter
+				</button>
+
+				<a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
+			</div>
+		</div>
+	</form>
+{% endblock %}

@@ -2,15 +2,25 @@
 
 namespace App\Entity;
 
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\DiscriminatorMap;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-#[ORM\Entity]
-class User
+#[ORM\InheritanceType('JOINED')]
+#[ORM\DiscriminatorColumn(name: 'discr', type: 'string')]
+#[DiscriminatorMap(['client' => Client::class, 'renter' => Renter::class])]
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private int $id;
+
+    #[ORM\Column(length: 30)]
+    private ?string $username = null;
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $lastName;
@@ -18,7 +28,7 @@ class User
     #[ORM\Column(type: 'string', length: 255)]
     private string $firstName;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'date')]
     private \DateTimeInterface $birthDate;
 
     #[ORM\Column(type: 'string', nullable: true)]
@@ -30,17 +40,35 @@ class User
     #[ORM\Column(type: 'string')]
     private string $password;
 
-    #[ORM\Column(type: 'array')]
+    private ?string $plainPassword = null;
+
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    #[ORM\Column(type: 'json')]
     private array $roles = [];
 
-    #[ORM\Column(type: 'boolean')]
-    private bool $offersAdultContent;
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private bool $offersAdultContent = false;
 
-    // Getters et setters
+    public function __construct()
+    {
+        $this->roles = ['ROLE_USER'];
+    }
 
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): static
+    {
+        $this->username = $username;
+
+        return $this;
     }
 
     public function getLastName(): string
@@ -48,7 +76,7 @@ class User
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): self
+    public function setLastName(string $lastName): static
     {
         $this->lastName = $lastName;
         return $this;
@@ -59,7 +87,7 @@ class User
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): self
+    public function setFirstName(string $firstName): static
     {
         $this->firstName = $firstName;
         return $this;
@@ -70,7 +98,7 @@ class User
         return $this->birthDate;
     }
 
-    public function setBirthDate(\DateTimeInterface $birthDate): self
+    public function setBirthDate(\DateTimeInterface $birthDate): static
     {
         $this->birthDate = $birthDate;
         return $this;
@@ -81,7 +109,7 @@ class User
         return $this->gender;
     }
 
-    public function setGender(?string $gender): self
+    public function setGender(?string $gender): static
     {
         $this->gender = $gender;
         return $this;
@@ -92,32 +120,54 @@ class User
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): static
     {
         $this->email = $email;
         return $this;
     }
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(string $password): static
     {
         $this->password = $password;
+
         return $this;
     }
 
-    public function getRoles(): array
+    public function getPlainPassword(): ?string
     {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $plainPassword): static
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+    public function getRoles(): array {
         return $this->roles;
     }
 
-    public function setRoles(array $roles): self
+    public function  eraseCredentials(): void
     {
-        $this->roles = $roles;
-        return $this;
+        $this->plainPassword = null;
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
     }
 
     public function getOffersAdultContent(): bool
@@ -125,7 +175,7 @@ class User
         return $this->offersAdultContent;
     }
 
-    public function setOffersAdultContent(bool $offersAdultContent): self
+    public function setOffersAdultContent(bool $offersAdultContent): static
     {
         $this->offersAdultContent = $offersAdultContent;
         return $this;

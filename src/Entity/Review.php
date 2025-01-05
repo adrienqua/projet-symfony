@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: ReviewRepository::class)]
 class Review
 {
     #[ORM\Id]
@@ -19,8 +19,8 @@ class Review
     #[ORM\Column(type: 'text')]
     private string $comment;
 
-    #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $reviewDate;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private \DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reviews')]
     private User $reviewedUser;
@@ -38,7 +38,7 @@ class Review
         return $this->rating;
     }
 
-    public function setRating(int $rating): self
+    public function setRating(int $rating): static
     {
         $this->rating = $rating;
         return $this;
@@ -49,20 +49,20 @@ class Review
         return $this->comment;
     }
 
-    public function setComment(string $comment): self
+    public function setComment(string $comment): static
     {
         $this->comment = $comment;
         return $this;
     }
 
-    public function getReviewDate(): \DateTimeInterface
+    public function getCreatedAt(): \DateTimeImmutable
     {
-        return $this->reviewDate;
+        return $this->createdAt;
     }
 
-    public function setReviewDate(\DateTimeInterface $reviewDate): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
-        $this->reviewDate = $reviewDate;
+        $this->createdAt = $createdAt;
         return $this;
     }
 
@@ -71,7 +71,7 @@ class Review
         return $this->reviewedUser;
     }
 
-    public function setReviewedUser(User $reviewedUser): self
+    public function setReviewedUser(User $reviewedUser): static
     {
         $this->reviewedUser = $reviewedUser;
         return $this;
@@ -82,7 +82,7 @@ class Review
         return $this->offer;
     }
 
-    public function setOffer(Offer $offer): self
+    public function setOffer(Offer $offer): static
     {
         $this->offer = $offer;
         return $this;

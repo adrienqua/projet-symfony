@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\MessageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: MessageRepository::class)]
 class Message
 {
     #[ORM\Id]
@@ -16,8 +16,8 @@ class Message
     #[ORM\Column(type: 'text')]
     private string $content;
 
-    #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $sentDate;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private \DateTimeImmutable $sentAt;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     private User $sender;
@@ -38,20 +38,20 @@ class Message
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    public function setContent(string $content): static
     {
         $this->content = $content;
         return $this;
     }
 
-    public function getSentDate(): \DateTimeInterface
+    public function getSentAt(): \DateTimeImmutable
     {
-        return $this->sentDate;
+        return $this->sentAt;
     }
 
-    public function setSentDate(\DateTimeInterface $sentDate): self
+    public function setSentAt(\DateTimeImmutable $sentAt): static
     {
-        $this->sentDate = $sentDate;
+        $this->sentAt = $sentAt;
         return $this;
     }
 
@@ -60,7 +60,7 @@ class Message
         return $this->sender;
     }
 
-    public function setSender(User $sender): self
+    public function setSender(User $sender): static
     {
         $this->sender = $sender;
         return $this;
@@ -71,7 +71,7 @@ class Message
         return $this->recipient;
     }
 
-    public function setRecipient(User $recipient): self
+    public function setRecipient(User $recipient): static
     {
         $this->recipient = $recipient;
         return $this;
@@ -82,7 +82,7 @@ class Message
         return $this->contract;
     }
 
-    public function setContract(?Contract $contract): self
+    public function setContract(?Contract $contract): static
     {
         $this->contract = $contract;
         return $this;

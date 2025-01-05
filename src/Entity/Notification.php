@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
+use App\Repository\NotificationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: NotificationRepository::class)]
 class Notification
 {
     #[ORM\Id]
@@ -18,12 +19,12 @@ class Notification
     #[ORM\Column(type: 'text')]
     private string $message;
 
-    #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $notificationDate;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private \DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'notifications')]
     private User $user;
-    
+
     public function getId(): int
     {
         return $this->id;
@@ -34,7 +35,7 @@ class Notification
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(string $type): static
     {
         $this->type = $type;
         return $this;
@@ -45,20 +46,20 @@ class Notification
         return $this->message;
     }
 
-    public function setMessage(string $message): self
+    public function setMessage(string $message): static
     {
         $this->message = $message;
         return $this;
     }
 
-    public function getNotificationDate(): \DateTimeInterface
+    public function getCreatedAt(): \DateTimeImmutable
     {
-        return $this->notificationDate;
+        return $this->createdAt;
     }
 
-    public function setNotificationDate(\DateTimeInterface $notificationDate): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
-        $this->notificationDate = $notificationDate;
+        $this->createdAt = $createdAt;
         return $this;
     }
 
@@ -67,7 +68,7 @@ class Notification
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(User $user): static
     {
         $this->user = $user;
         return $this;

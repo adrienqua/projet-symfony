@@ -3,9 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\TaskRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: TaskRepository::class)]
 class Task
 {
     #[ORM\Id]
@@ -22,8 +23,8 @@ class Task
     #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
     private float $proposedPrice;
 
-    #[ORM\Column(type: 'datetime')]
-    private \DateTimeInterface $requestDate;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private \DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isAdultContent;
@@ -32,7 +33,7 @@ class Task
     private User $requester;
 
     #[ORM\ManyToMany(targetEntity: Offer::class, inversedBy: 'tasks')]
-    private $offers;
+    private Collection $offers;
 
     public function getId(): int
     {
@@ -44,7 +45,7 @@ class Task
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(string $title): static
     {
         $this->title = $title;
         return $this;
@@ -55,7 +56,7 @@ class Task
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(string $description): static
     {
         $this->description = $description;
         return $this;
@@ -66,20 +67,20 @@ class Task
         return $this->proposedPrice;
     }
 
-    public function setProposedPrice(float $proposedPrice): self
+    public function setProposedPrice(float $proposedPrice): static
     {
         $this->proposedPrice = $proposedPrice;
         return $this;
     }
 
-    public function getRequestDate(): \DateTimeInterface
+    public function getCreatedAt(): \DateTimeImmutable
     {
-        return $this->requestDate;
+        return $this->createdAt;
     }
 
-    public function setRequestDate(\DateTimeInterface $requestDate): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
-        $this->requestDate = $requestDate;
+        $this->createdAt = $createdAt;
         return $this;
     }
 
@@ -88,7 +89,7 @@ class Task
         return $this->isAdultContent;
     }
 
-    public function setIsAdultContent(bool $isAdultContent): self
+    public function setIsAdultContent(bool $isAdultContent): static
     {
         $this->isAdultContent = $isAdultContent;
         return $this;
@@ -99,7 +100,7 @@ class Task
         return $this->requester;
     }
 
-    public function setRequester(User $requester): self
+    public function setRequester(User $requester): static
     {
         $this->requester = $requester;
         return $this;
@@ -110,7 +111,7 @@ class Task
         return $this->offers;
     }
 
-    public function addOffer(Offer $offer): self
+    public function addOffer(Offer $offer): static
     {
         if (!$this->offers->contains($offer)) {
             $this->offers[] = $offer;
@@ -118,7 +119,7 @@ class Task
         return $this;
     }
 
-    public function removeOffer(Offer $offer): self
+    public function removeOffer(Offer $offer): static
     {
         $this->offers->removeElement($offer);
         return $this;
