@@ -18,5 +18,14 @@ App\Entity\Renter:
         birthDate: <(new DateTime("1997-02-25"))>
         roles: [ROLE_ADMIN]
 
+    user_admin2 (extends user_template):
+        email: "makspomo8@gmail.com"
+        username: "maks"
+        firstName: "Maksymilian"
+        lastName: "Pomorzewski"
+        plainPassword: "maks1234"
+        birthDate: <(new DateTime("2000-01-01"))>
+        roles: [ROLE_ADMIN]
+
 App\Entity\Client:
     user_base_{1..25} (extends user_template):
