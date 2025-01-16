@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -49,9 +51,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     private bool $offersAdultContent = false;
 
+    /**
+     * @var Collection<int, Task>
+     */
+    #[ORM\ManyToMany(targetEntity: Task::class, inversedBy: 'users')]
+    private Collection $favoriteTasks;
+
+    /**
+     * @var Collection<int, Notification>
+     */
+    #[ORM\OneToMany(targetEntity: Notification::class, mappedBy: 'user')]
+    private Collection $notifications;
+
+    /**
+     * @var Collection<int, Review>
+     */
+    #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'reviewedUser')]
+    private Collection $reviews;
+
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];
+        $this->favoriteTasks = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): int
@@ -178,6 +201,90 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setOffersAdultContent(bool $offersAdultContent): static
     {
         $this->offersAdultContent = $offersAdultContent;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Task>
+     */
+    public function getFavoriteTasks(): Collection
+    {
+        return $this->favoriteTasks;
+    }
+
+    public function addFavoriteTask(Task $favoriteTask): static
+    {
+        if (!$this->favoriteTasks->contains($favoriteTask)) {
+            $this->favoriteTasks->add($favoriteTask);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteTask(Task $favoriteTask): static
+    {
+        $this->favoriteTasks->removeElement($favoriteTask);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Notification>
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function addNotification(Notification $notification): static
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications->add($notification);
+            $notification->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotification(Notification $notification): static
+    {
+        if ($this->notifications->removeElement($notification)) {
+            // set the owning side to null (unless already changed)
+            if ($notification->getUser() === $this) {
+                $notification->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): static
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews->add($review);
+            $review->setReviewedUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): static
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getReviewedUser() === $this) {
+                $review->setReviewedUser(null);
+            }
+        }
+
         return $this;
     }
 }

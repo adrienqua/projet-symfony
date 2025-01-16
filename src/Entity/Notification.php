@@ -22,8 +22,8 @@ class Notification
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'notifications')]
-    private User $user;
+    #[ORM\ManyToOne(inversedBy: 'notifications')]
+    private ?User $user = null;
 
     public function getId(): int
     {
@@ -63,14 +63,16 @@ class Notification
         return $this;
     }
 
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(User $user): static
+    public function setUser(?User $user): static
     {
         $this->user = $user;
+
         return $this;
     }
+
 }
