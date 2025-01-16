@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Taskify{% endblock %}</title>
+    <title>{% block title %}DoItTogether{% endblock %}</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
     {% include 'ui/navbar.html.twig' %}
@@ -26,7 +27,7 @@
             const html = document.documentElement;
             const currentTheme = localStorage.getItem('theme');
 
-            if (currentTheme) {
+            if (currentTheme) { 
                 html.classList.add(currentTheme);
             }
 
