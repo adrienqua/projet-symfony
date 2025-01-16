@@ -1,25 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <!-- Hero Section -->
-    <section class="bg-blue-700 text-white py-20 text-center">
+    <!-- Presentation Section -->
+    <section class="bg-blue-700 text-white py-20 text-center dark:bg-gray-800">
         <h1 class="text-4xl font-semibold">Trouvez des offres et des tâches à réaliser</h1>
         <p class="mt-4 text-lg">Explorez les opportunités et trouvez la tâche qui vous correspond.</p>
     </section>
 
+    <!-- Bouton de changement de thème -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="theme-toggle" class="bg-gray-800 text-white p-2 rounded-full">
+            🌙
+        </button>
+    </div>
+
     <!-- Offres et Tâches -->
-    <section class="container mx-auto py-12">
+    <section class="container mx-auto py-12 dark:bg-gray-800">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {% for offer in offers %}
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <h2 class="text-2xl font-semibold">{{ offer.title }}</h2>
-                    <p class="mt-4 text-gray-700">{{ offer.description }}</p>
+                <div class="bg-white p-6 rounded-lg shadow-lg dark:bg-gray-700">
+                    <h2 class="text-2xl font-semibold dark:text-white">{{ offer.title }}</h2>
+                    <p class="mt-4 text-gray-700 dark:text-gray-300">{{ offer.description }}</p>
                     <div class="mt-6">
-                        <a href="#" class="text-blue-600 hover:underline">Voir les tâches disponibles</a>
+                        <a href="#" class="text-blue-600 hover:underline dark:text-blue-400">Voir les tâches disponibles</a>
                     </div>
                 </div>
             {% else %}
-                <p class="text-gray-700">Aucune offre disponible pour le moment.</p>
+                <p class="text-gray-700 dark:text-gray-300">Aucune offre disponible pour le moment.</p>
             {% endfor %}
         </div>
     </section>

@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Taskify{% endblock %}</title>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
+    {% include 'ui/navbar.html.twig' %}
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>
-			{% block title %} Taskify
-			{% endblock %}
-		</title>
-		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-	</head>
+    {% block content %}{% endblock %}
 
-	<body class="bg-gray-100 font-sans flex flex-col min-h-screen">
+    {% include 'ui/footer.html.twig' %}
 
-		{% include 'ui/navbar.html.twig' %}
+    {% block scripts %}
+        <script>
+            const themeToggleButton = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+            const currentTheme = localStorage.getItem('theme');
 
-		{% block content %}
-			<!-- Content ici -->
-		{% endblock %}
+            if (currentTheme) {
+                html.classList.add(currentTheme);
+            }
 
-		{% include 'ui/footer.html.twig' %}
-
-	</body>
-
+            themeToggleButton?.addEventListener('click', () => {
+                if (html.classList.contains('dark')) {
+                    html.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                    themeToggleButton.innerHTML = '🌙';
+                }
+                else {
+                    html.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggleButton.innerHTML = '☀️';
+                }
+            });
+        </script>
+    {% endblock %}
+</body>
 </html>
