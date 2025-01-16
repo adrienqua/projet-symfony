@@ -10,32 +10,17 @@
     <!-- Offres et Tâches -->
     <section class="container mx-auto py-12">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Offre 1 -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-semibold">Offre 1</h2>
-                <p class="mt-4 text-gray-700">Description détaillée de l'offre et des tâches à réaliser...</p>
-                <div class="mt-6">
-                    <a href="#" class="text-blue-600 hover:underline">Voir les tâches disponibles</a>
+            {% for offer in offers %}
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-semibold">{{ offer.title }}</h2>
+                    <p class="mt-4 text-gray-700">{{ offer.description }}</p>
+                    <div class="mt-6">
+                        <a href="#" class="text-blue-600 hover:underline">Voir les tâches disponibles</a>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Offre 2 -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-semibold">Offre 2</h2>
-                <p class="mt-4 text-gray-700">Description détaillée de l'offre et des tâches à réaliser...</p>
-                <div class="mt-6">
-                    <a href="#" class="text-blue-600 hover:underline">Voir les tâches disponibles</a>
-                </div>
-            </div>
-
-            <!-- Offre 3 -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-semibold">Offre 3</h2>
-                <p class="mt-4 text-gray-700">Description détaillée de l'offre et des tâches à réaliser...</p>
-                <div class="mt-6">
-                    <a href="#" class="text-blue-600 hover:underline">Voir les tâches disponibles</a>
-                </div>
-            </div>
+            {% else %}
+                <p class="text-gray-700">Aucune offre disponible pour le moment.</p>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}
