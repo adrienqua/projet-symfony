@@ -2,25 +2,25 @@
 
 {% block content %}
 	<!-- Hero Section -->
-	<section class="bg-indigo-700 text-white py-20 text-center">
+	<section class="bg-indigo-700 text-white py-20 text-center dark:bg-gray-900">
 		<h1 class="text-4xl font-semibold">A deux c'est mieux !</h1>
 		<p class="mt-4 text-lg text-gray-100">Parce que chaque instant mérite d’être partagé !</p>
 	</section>
 
 	<!-- Offres et Tâches -->
-	<section class="container mx-auto py-12">
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-			{% for offer in offers %}
-				<div class="bg-white p-6 rounded-lg shadow-lg">
-					<h2 class="text-2xl font-semibold">{{ offer.title }}</h2>
-					<p class="mt-4 text-gray-700">{{ offer.description }}</p>
-					<div class="mt-6">
-						<a href="#" class="text-indigo-600 hover:underline">Voir les tâches disponibles</a>
-					</div>
-				</div>
-			{% else %}
-				<p class="text-gray-700">Aucune offre disponible pour le moment.</p>
-			{% endfor %}
-		</div>
-	</section>
+    <section class="container mx-auto py-12 dark:bg-gray-800">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for offer in offers %}
+                <div class="bg-white p-6 rounded-lg shadow-lg dark:bg-gray-700">
+                    <h2 class="text-2xl font-semibold dark:text-white">{{ offer.title }}</h2>
+                    <p class="mt-4 text-gray-700 dark:text-gray-300">{{ offer.description }}</p>
+                    <div class="mt-6">
+                        <a href="#" class="text-blue-600 hover:underline dark:text-blue-400">Voir les tâches disponibles</a>
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-gray-700 dark:text-white">Aucune offre disponible pour le moment.</p>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}
