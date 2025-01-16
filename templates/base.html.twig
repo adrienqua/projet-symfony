@@ -1,44 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>
-			{% block title %}
-				DoItTogether
-			{% endblock %}
-		</title>
-		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-	</head>
-	<body class="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
-		{% include 'ui/navbar.html.twig' %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Taskify{% endblock %}</title>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
+    {% include 'ui/navbar.html.twig' %}
 
     {% block content %}{% endblock %}
 
-		{% include 'ui/footer.html.twig' %}
+    <!-- Bouton de changement de thème -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="theme-toggle" class="bg-gray-800 text-white p-2 rounded-full">
+            🌙
+        </button>
+    </div>
 
-		{% block scripts %}
-			<script>
-				const themeToggleButton = document.getElementById('theme-toggle');
-const html = document.documentElement;
-const currentTheme = localStorage.getItem('theme');
+    {% include 'ui/footer.html.twig' %}
 
-if (currentTheme) {
-html.classList.add(currentTheme);
-}
+    {% block scripts %}
+        <script>
+            const themeToggleButton = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+            const currentTheme = localStorage.getItem('theme');
 
-themeToggleButton ?. addEventListener('click', () => {
-if (html.classList.contains('dark')) {
-html.classList.remove('dark');
-localStorage.setItem('theme', 'light');
-themeToggleButton.innerHTML = '🌙';
-} else {
-html.classList.add('dark');
-localStorage.setItem('theme', 'dark');
-themeToggleButton.innerHTML = '☀️';
-}
-});
-			</script>
-		{% endblock %}
-	</body>
+            if (currentTheme) {
+                html.classList.add(currentTheme);
+            }
+
+            themeToggleButton?.addEventListener('click', () => {
+                if (html.classList.contains('dark')) {
+                    html.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                    themeToggleButton.innerHTML = '🌙';
+                }
+                else {
+                    html.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggleButton.innerHTML = '☀️';
+                }
+            });
+        </script>
+    {% endblock %}
+</body>
 </html>
