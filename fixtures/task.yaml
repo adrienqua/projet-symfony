@@ -59,7 +59,6 @@ App\Entity\Task:
     proposedPrice: 55
     requester: "@user_base_<numberBetween(1, 25)>"
 
-  # Sport et Santé
   task_sport_1:
     title: "Séance de yoga"
     description: "Participez à une séance de yoga guidée pour vous détendre et vous recentrer."
