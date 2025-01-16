@@ -1,22 +1,33 @@
 App\Entity\User:
-    user_template (template):
-        email: "<email()>"
-        username: "<userName()>"
-        firstName: "<firstName()>"
-        lastName: "<lastName()>"
-        plainPassword: "password_<current()>"
-        birthDate: "<dateTimeBetween('-50 years', '-18 years')>"
-        roles: [ROLE_USER]
+  user_template (template):
+    email: "<email()>"
+    username: "<userName()>"
+    firstName: "<firstName()>"
+    lastName: "<lastName()>"
+    plainPassword: "password_<current()>"
+    birthDate: "<dateTimeBetween('-50 years', '-18 years')>"
+    roles: [ROLE_USER]
 
 App\Entity\Renter:
-    user_admin (extends user_template):
-        email: "adrien.quacchia@gmail.com"
-        username: "adrienqua"
-        firstName: "Adrien"
-        lastName: "Quacchia"
-        plainPassword: "adrien1234"
-        birthDate: <(new DateTime("1997-02-25"))>
-        roles: [ROLE_ADMIN]
+  user_admin (extends user_template):
+    email: "adrien.quacchia@gmail.com"
+    username: "adrienqua"
+    firstName: "Adrien"
+    lastName: "QUACCHIA"
+    plainPassword: "adrien1234"
+    birthDate: <(new DateTime("1997-02-25"))>
+    roles: [ROLE_ADMIN]
+
+  user_admin2 (extends user_template):
+    email: "makspomo8@gmail.com"
+    username: "maksy18"
+    firstName: "Maksymilian"
+    lastName: "POMORZEWSKI"
+    plainPassword: "maks1234"
+    birthDate: <(new DateTime("1997-02-25"))>
+    roles: [ROLE_ADMIN]
+
+  user_renter_{1..25} (extends user_template):
 
 App\Entity\Client:
-    user_base_{1..25} (extends user_template):
+  user_base_{1..25} (extends user_template):

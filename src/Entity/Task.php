@@ -27,8 +27,8 @@ class Task
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: 'boolean')]
-    private bool $isAdultContent;
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private bool $isAdultContent = false;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'tasks')]
     private User $requester;
@@ -44,6 +44,8 @@ class Task
 
     public function __construct()
     {
+        $this->setCreatedAt(new \DateTimeImmutable());
+        $this->offers = new ArrayCollection();
         $this->users = new ArrayCollection();
     }
 

@@ -24,6 +24,11 @@ class Review
 
     #[ORM\ManyToOne(targetEntity: Offer::class)]
     private Offer $offer;
+    
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTimeImmutable());
+    }
 
     #[ORM\ManyToOne(inversedBy: 'reviews')]
     private ?User $reviewedUser = null;

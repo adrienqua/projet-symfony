@@ -25,6 +25,11 @@ class Payment
     #[ORM\Column(type: 'string')]
     private string $method;
 
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTimeImmutable());
+    }
+
     public function getId(): int
     {
         return $this->id;

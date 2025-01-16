@@ -1,0 +1,19 @@
+App\Entity\Category:
+  category_social:
+    name: "Socialisation"
+    description: "Services pour partager des moments sociaux comme dîner, événements ou jeux."
+  category_learning:
+    name: "Apprentissage"
+    description: "Activités pour apprendre de nouvelles compétences ou améliorer vos connaissances."
+  category_sport:
+    name: "Sport et Santé"
+    description: "Accompagnement pour des activités physiques ou du bien-être personnel."
+  category_travel:
+    name: "Voyages et Tourisme"
+    description: "Prestations pour explorer de nouveaux lieux avec un guide ou un compagnon."
+  category_helping:
+    name: "Soutien au quotidien"
+    description: "Aide pour des tâches pratiques comme le shopping, l’organisation ou la garde d’animaux."
+  category_entertainment:
+    name: "Divertissement"
+    description: "Services pour se détendre et s’amuser comme des concerts, le karaoké, ou des jeux."

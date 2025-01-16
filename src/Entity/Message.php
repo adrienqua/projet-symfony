@@ -28,6 +28,11 @@ class Message
     #[ORM\ManyToOne(targetEntity: Contract::class, inversedBy: 'messages')]
     private ?Contract $contract;
 
+    public function __construct()
+    {
+        $this->sentAt = new \DateTimeImmutable();
+    }
+
     public function getId(): int
     {
         return $this->id;

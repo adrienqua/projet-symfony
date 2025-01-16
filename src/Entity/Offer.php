@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\OfferRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -38,6 +39,13 @@ class Offer
     #[ORM\ManyToOne(inversedBy: 'offers')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Renter $renter = null;
+
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTimeImmutable());
+        $this->setIsAdultContent(false);
+        $this->tasks = new ArrayCollection();
+    }
 
     public function getId(): int
     {

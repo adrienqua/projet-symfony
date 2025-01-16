@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ContractRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ContractRepository::class)]
@@ -27,6 +28,13 @@ class Contract
 
     #[ORM\OneToMany(mappedBy: 'contract', targetEntity: Payment::class)]
     private $payments;
+
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTimeImmutable());
+        $this->messages = new ArrayCollection();
+        $this->payments = new ArrayCollection();
+    }
 
     public function getId(): int
     {
