@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TaskRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -26,14 +27,27 @@ class Task
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: 'boolean')]
-    private bool $isAdultContent;
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private bool $isAdultContent = false;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'tasks')]
     private User $requester;
 
     #[ORM\ManyToMany(targetEntity: Offer::class, inversedBy: 'tasks')]
     private Collection $offers;
+
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoriteTasks')]
+    private Collection $users;
+
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTimeImmutable());
+        $this->offers = new ArrayCollection();
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -122,6 +136,33 @@ class Task
     public function removeOffer(Offer $offer): static
     {
         $this->offers->removeElement($offer);
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addFavoriteTask($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeFavoriteTask($this);
+        }
+
         return $this;
     }
 }
