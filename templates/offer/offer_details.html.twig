@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+	<article class="container mx-auto ">
+		<div class="flex flex-col md:flex-row gap-12 rounded-3xl shadow-md bg-white p-8 mb-8">
+			<div class="w-full md:w-3/5">
+				<Image src="https://placehold.co/600x400/png" alt={product.imageAlt || product.name} width={600} height={400} class="rounded-lg w-full"/>
+			</div>
+			<div class="w-full md:w-2/5">
+				<h1 class="text-3xl font-bold mb-2">{{offer.title}}</h1>
+
+				<p class="font-semibold">{{offer.description}}</p>
+				<p class="font-normal text-rose-600 mt-2 mb-6">{{offer.price}}
+					€</p>
+				<a href="/panier" class="w-full py-2 px-4 border transition-all duration-300 border-rose-600 text-rose-600 hover:text-white font-medium rounded-xl hover:bg-rose-700 focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">
+					Acheter ce service
+				</a>
+			</div>
+		</div>
+	</article>
+{% endblock %}
