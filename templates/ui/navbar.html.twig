@@ -9,9 +9,20 @@
 			<li>
 				<a href="{{ path('app_categories_list') }}" class="hover:text-gray-300">Services</a>
 			</li>
+			{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+				<li>
+					<a href={{path("app_user_profile")}} class="hover:text-gray-300">Profil de
+						{{ app.user.username }}
+					</a>
+				</li>
+			{% endif %}
 			<li>
-				<a href="{{ path('app_login') }}" class="hover:text-gray-300">Connexion</a>
-			</li>
+			{% if app.user %}
+				<a href="{{ path('app_logout') }}" class="hover:text-gray-300">Se déconnecter</a>
+			{% else %}
+				<a href="{{ path('app_login') }}" class="hover:text-gray-300">Se connecter</a>
+			{% endif %}
+			</li>		
 		</ul>
 	</div>
 </nav>
