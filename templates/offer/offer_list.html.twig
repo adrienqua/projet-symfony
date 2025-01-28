@@ -1,14 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-	<!-- Hero Section -->
-	<section class="bg-indigo-500 text-white py-20 text-center dark:bg-gray-900">
-		<h1 class="text-4xl font-semibold">A deux c'est mieux !</h1>
-		<p class="mt-4 text-lg text-gray-100">Parce que chaque instant mérite d’être partagé !</p>
-	</section>
-
-	<!-- Offres et Tâches -->
 	<section class="container mx-auto py-12 dark:bg-gray-800">
+		<h1 class="text-3xl font-bold text-center mb-8">Toutes les annonces</h1>
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 			{% for offer in offers %}
 				{{ include('ui/offer_card.html.twig') }}

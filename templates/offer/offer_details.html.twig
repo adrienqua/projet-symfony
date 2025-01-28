@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+	<article class="container mx-auto ">
+		<div class="flex flex-col md:flex-row gap-12 rounded-3xl shadow-md bg-white p-8 mb-8 dark:bg-gray-700 ">
+			<div class="w-full md:w-3/5">
+				<Image src="https://placehold.co/600x400/png" alt={product.imageAlt || product.name} width={600} height={400} class="rounded-lg w-full"/>
+			</div>
+			<div class="w-full md:w-2/5">
+				<h1 class="text-3xl font-bold mb-2">{{offer.title}}</h1>
+
+				<p class="font-semibold">{{offer.description}}</p>
+				<p class="font-normal text-fuchsia-400 dark:text-fuchsia-200 mt-2 mb-6">{{offer.price}}
+					€</p>
+				<button id="pay-button" class="w-full py-2 px-4 border transition-all duration-300 border-fuchsia-400 text-fuchsia-400 hover:text-gray-800 font-medium rounded-xl hover:bg-fuchsia-300 focus:ring-2 focus:ring-fuchsia-200 focus:ring-offset-2 dark:border-fuchsia-200 dark:text-fuchsia-200 dark:hover:bg-fuchsia-300  dark:focus:ring-fuchsia-100 dark:hover:text-gray-800">
+					Acheter ce service
+				</button>
+			</div>
+
+		</div>
+	</article>
+{% endblock %}
+
+{% block scripts %}
+	<script type="module">
+		import {loadStripe} from 'https://js.stripe.com/v3/';
+
+const stripePublicKey = '{{ stripe_public_key }}';
+console.log("Stripe Public Key:", stripePublicKey);
+
+const stripe = await loadStripe(stripePublicKey);
+
+document.getElementById('pay-button').addEventListener('click', async () => {
+console.log('clicked');
+const response = await fetch('/create-payment-intent', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json'
+},
+body: JSON.stringify(
+{amount: 5000}
+), // Example: $50.00
+});
+
+const {client_secret} = await response.json();
+
+const {error} = await stripe.confirmCardPayment(client_secret, {
+payment_method: {
+card: elements.create('card'),
+billing_details: {
+name: 'Customer Name'
+}
+}
+});
+
+if (error) {
+console.error('Payment failed:', error);
+} else {
+console.log('Payment succeeded!');
+}
+});
+	</script>
+{% endblock %}

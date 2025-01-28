@@ -1,0 +1,13 @@
+<div>
+	<div class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-700 transition-all duration-300">
+		<h2 class="text-xl font-semibold dark:text-white mt-2">{{ category.name }}</h2>
+		<ul class="mt-6">
+			{% for task in category.tasks %}
+				<li class="mb-3">
+					<a href="{{ path('app_category_details', {'id': task.id} ) }}" class="text-fuchsia-600 hover:underline dark:text-fuchsia-400">{{ task.title }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+</div>

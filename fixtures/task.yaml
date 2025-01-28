@@ -1,180 +1,240 @@
 App\Entity\Task:
-  task_social_1:
-    title: "Dîner en compagnie"
-    description: "Accompagnez une personne pour un dîner agréable et convivial."
-    proposedPrice: 50
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_social_1:
+        title: "Dîner en compagnie"
+        description: "Accompagnez une personne pour un dîner agréable et convivial."
+        proposedPrice: 50
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_social"
 
-  task_social_2:
-    title: "Partenaire pour un événement"
-    description: "Rejoignez quelqu'un pour un concert, une soirée ou une fête."
-    proposedPrice: 75
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_social_2:
+        title: "Partenaire pour un événement"
+        description: "Rejoignez quelqu'un pour un concert, une soirée ou une fête."
+        proposedPrice: 75
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_social"
 
-  task_social_3:
-    title: "Ami pour jeux vidéo"
-    description: "Jouez en ligne ou en local avec quelqu'un pour partager un bon moment."
-    proposedPrice: 30
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_social_3:
+        title: "Ami pour jeux vidéo"
+        description: "Jouez en ligne ou en local avec quelqu'un pour partager un bon moment."
+        proposedPrice: 30
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_social"
 
-  task_social_4:
-    title: "Accompagnement pour un café"
-    description: "Discutez et passez un moment agréable autour d'un café."
-    proposedPrice: 20
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_social_4:
+        title: "Accompagnement pour un café"
+        description: "Discutez et passez un moment agréable autour d'un café."
+        proposedPrice: 20
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_social"
 
-  task_social_5:
-    title: "Discussion en tête-à-tête"
-    description: "Prenez le temps de discuter avec quelqu'un pour échanger des idées ou des conseils."
-    proposedPrice: 40
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_social_5:
+        title: "Discussion en tête-à-tête"
+        description: "Prenez le temps de discuter avec quelqu'un pour échanger des idées ou des conseils."
+        proposedPrice: 40
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_social"
 
-  task_learning_1:
-    title: "Cours de cuisine"
-    description: "Apprenez à préparer un plat spécifique avec un chef expérimenté."
-    proposedPrice: 60
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_learning_1:
+        title: "Cours de cuisine"
+        description: "Apprenez à préparer un plat spécifique avec un chef expérimenté."
+        proposedPrice: 60
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_learning"
 
-  task_learning_2:
-    title: "Cours de guitare"
-    description: "Initiez-vous à la guitare ou améliorez vos compétences musicales."
-    proposedPrice: 50
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_learning_2:
+        title: "Cours de guitare"
+        description: "Initiez-vous à la guitare ou améliorez vos compétences musicales."
+        proposedPrice: 50
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_learning"
 
-  task_learning_3:
-    title: "Tuteur en langues"
-    description: "Pratiquez une langue étrangère avec un locuteur natif ou avancé."
-    proposedPrice: 40
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_learning_3:
+        title: "Tuteur en langues"
+        description: "Pratiquez une langue étrangère avec un locuteur natif ou avancé."
+        proposedPrice: 40
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_learning"
 
-  task_learning_4:
-    title: "Initiation au dessin"
-    description: "Découvrez les bases du dessin avec un artiste."
-    proposedPrice: 45
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_learning_4:
+        title: "Initiation au dessin"
+        description: "Découvrez les bases du dessin avec un artiste."
+        proposedPrice: 45
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_learning"
 
-  task_learning_5:
-    title: "Atelier de bricolage"
-    description: "Apprenez à créer ou réparer des objets avec un expert en bricolage."
-    proposedPrice: 55
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_learning_5:
+        title: "Atelier de bricolage"
+        description: "Apprenez à créer ou réparer des objets avec un expert en bricolage."
+        proposedPrice: 55
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_learning"
 
-  task_sport_1:
-    title: "Séance de yoga"
-    description: "Participez à une séance de yoga guidée pour vous détendre et vous recentrer."
-    proposedPrice: 40
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_sport_1:
+        title: "Séance de yoga"
+        description: "Participez à une séance de yoga guidée pour vous détendre et vous recentrer."
+        proposedPrice: 40
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_sport"
 
-  task_sport_2:
-    title: "Coaching fitness"
-    description: "Bénéficiez d'une séance de coaching pour atteindre vos objectifs physiques."
-    proposedPrice: 60
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_sport_2:
+        title: "Coaching fitness"
+        description: "Bénéficiez d'une séance de coaching pour atteindre vos objectifs physiques."
+        proposedPrice: 60
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_sport"
 
-  task_sport_3:
-    title: "Partenaire de jogging"
-    description: "Courez avec quelqu'un pour rester motivé et en forme."
-    proposedPrice: 30
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_sport_3:
+        title: "Partenaire de jogging"
+        description: "Courez avec quelqu'un pour rester motivé et en forme."
+        proposedPrice: 30
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_sport"
 
-  task_sport_4:
-    title: "Guide de randonnée"
-    description: "Explorez des sentiers avec un guide expérimenté."
-    proposedPrice: 50
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_sport_4:
+        title: "Guide de randonnée"
+        description: "Explorez des sentiers avec un guide expérimenté."
+        proposedPrice: 50
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_sport"
 
-  task_sport_5:
-    title: "Séance de méditation"
-    description: "Apprenez à méditer et trouvez la paix intérieure avec un expert."
-    proposedPrice: 35
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_sport_5:
+        title: "Séance de méditation"
+        description: "Apprenez à méditer et trouvez la paix intérieure avec un expert."
+        proposedPrice: 35
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_sport"
 
-  task_travel_1:
-    title: "Guide touristique"
-    description: "Faites découvrir les lieux incontournables de votre ville."
-    proposedPrice: 100
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_travel_1:
+        title: "Guide touristique"
+        description: "Faites découvrir les lieux incontournables de votre ville."
+        proposedPrice: 100
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_travel"
 
-  task_travel_2:
-    title: "Accompagnateur de voyage"
-    description: "Voyagez avec quelqu'un pour partager l'expérience et la sécurité."
-    proposedPrice: 150
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_travel_2:
+        title: "Accompagnateur de voyage"
+        description: "Voyagez avec quelqu'un pour partager l'expérience et la sécurité."
+        proposedPrice: 150
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_travel"
 
-  task_travel_3:
-    title: "Photographe en voyage"
-    description: "Engagez un photographe pour capturer vos souvenirs lors de vos déplacements."
-    proposedPrice: 120
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_travel_3:
+        title: "Photographe en voyage"
+        description: "Engagez un photographe pour capturer vos souvenirs lors de vos déplacements."
+        proposedPrice: 120
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_travel"
 
-  task_travel_4:
-    title: "Planificateur de voyage"
-    description: "Obtenez de l'aide pour planifier un itinéraire personnalisé."
-    proposedPrice: 80
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_travel_4:
+        title: "Planificateur de voyage"
+        description: "Obtenez de l'aide pour planifier un itinéraire personnalisé."
+        proposedPrice: 80
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_travel"
 
-  task_travel_5:
-    title: "Visite culinaire"
-    description: "Découvrez les spécialités locales avec un guide passionné de gastronomie."
-    proposedPrice: 90
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_travel_5:
+        title: "Visite culinaire"
+        description: "Découvrez les spécialités locales avec un guide passionné de gastronomie."
+        proposedPrice: 90
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_travel"
 
-  task_helping_1:
-    title: "Aide au shopping"
-    description: "Accompagnez une personne pour choisir et acheter ses produits."
-    proposedPrice: 30
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_helping_1:
+        title: "Aide au shopping"
+        description: "Accompagnez une personne pour choisir et acheter ses produits."
+        proposedPrice: 30
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_helping"
 
-  task_helping_2:
-    title: "Organisation à domicile"
-    description: "Aidez à organiser ou ranger une maison pour plus de praticité."
-    proposedPrice: 40
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_helping_2:
+        title: "Organisation à domicile"
+        description: "Aidez à organiser ou ranger une maison pour plus de praticité."
+        proposedPrice: 40
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_helping"
 
-  task_helping_3:
-    title: "Gardiennage d'animaux"
-    description: "Prenez soin d'un animal pendant que son propriétaire est absent."
-    proposedPrice: 50
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_helping_3:
+        title: "Gardiennage d'animaux"
+        description: "Prenez soin d'un animal pendant que son propriétaire est absent."
+        proposedPrice: 50
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_helping"
 
-  task_helping_4:
-    title: "Livraison de courses"
-    description: "Aidez à récupérer et livrer les courses à domicile."
-    proposedPrice: 20
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_helping_4:
+        title: "Livraison de courses"
+        description: "Aidez à récupérer et livrer les courses à domicile."
+        proposedPrice: 20
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_helping"
 
-  task_helping_5:
-    title: "Réparations légères"
-    description: "Apportez une aide pour de petites réparations ou installations."
-    proposedPrice: 60
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_helping_5:
+        title: "Réparations légères"
+        description: "Apportez une aide pour de petites réparations ou installations."
+        proposedPrice: 60
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_helping"
 
-  task_entertainment_1:
-    title: "Partenaire de karaoké"
-    description: "Chantez vos chansons préférées avec quelqu'un lors d'une soirée karaoké."
-    proposedPrice: 50
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_entertainment_1:
+        title: "Partenaire de karaoké"
+        description: "Chantez vos chansons préférées avec quelqu'un lors d'une soirée karaoké."
+        proposedPrice: 50
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_entertainment"
 
-  task_entertainment_2:
-    title: "Conteur d'histoires"
-    description: "Partagez des histoires captivantes ou écoutez-en une."
-    proposedPrice: 40
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_entertainment_2:
+        title: "Conteur d'histoires"
+        description: "Partagez des histoires captivantes ou écoutez-en une."
+        proposedPrice: 40
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_entertainment"
 
-  task_entertainment_3:
-    title: "Soirée jeux de société"
-    description: "Partagez un moment convivial autour de jeux de société."
-    proposedPrice: 35
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_entertainment_3:
+        title: "Soirée jeux de société"
+        description: "Partagez un moment convivial autour de jeux de société."
+        proposedPrice: 35
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_entertainment"
 
-  task_entertainment_4:
-    title: "Animateur de fête"
-    description: "Engagez un animateur pour dynamiser une soirée ou un événement."
-    proposedPrice: 100
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_entertainment_4:
+        title: "Animateur de fête"
+        description: "Engagez un animateur pour dynamiser une soirée ou un événement."
+        proposedPrice: 100
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_entertainment"
 
-  task_entertainment_5:
-    title: "Partenaire cinéma"
-    description: "Accompagnez quelqu'un pour regarder un film au cinéma."
-    proposedPrice: 25
-    requester: "@user_base_<numberBetween(1, 25)>"
+    task_entertainment_5:
+        title: "Partenaire cinéma"
+        description: "Accompagnez quelqu'un pour regarder un film au cinéma."
+        proposedPrice: 25
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
+        category: "@category_entertainment"

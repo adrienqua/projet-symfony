@@ -30,15 +30,19 @@ class Offer
     #[ORM\Column(type: 'boolean')]
     private bool $isAdultContent;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'offers')]
-    private Category $category;
-
-    #[ORM\ManyToMany(targetEntity: Task::class, mappedBy: 'offers')]
-    private Collection $tasks;
-
     #[ORM\ManyToOne(inversedBy: 'offers')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Renter $renter = null;
+
+    #[ORM\ManyToOne(inversedBy: 'offers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
+    /**
+     * @var Collection<int, Task>
+     */
+    #[ORM\ManyToMany(targetEntity: Task::class, mappedBy: 'offers')]
+    private Collection $tasks;
 
     public function __construct()
     {
@@ -107,40 +111,6 @@ class Offer
         return $this;
     }
 
-    public function getCategory(): Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(Category $category): static
-    {
-        $this->category = $category;
-        return $this;
-    }
-
-    public function getTasks()
-    {
-        return $this->tasks;
-    }
-
-    public function addTask(Task $task): static
-    {
-        if (!$this->tasks->contains($task)) {
-            $this->tasks[] = $task;
-            $task->addOffer($this);
-        }
-        return $this;
-    }
-
-    public function removeTask(Task $task): static
-    {
-        if ($this->tasks->contains($task)) {
-            $this->tasks->removeElement($task);
-            $task->removeOffer($this);
-        }
-        return $this;
-    }
-
     public function getRenter(): ?Renter
     {
         return $this->renter;
@@ -149,6 +119,45 @@ class Offer
     public function setRenter(?Renter $renter): static
     {
         $this->renter = $renter;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Task>
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
+
+    public function addTask(Task $task): static
+    {
+        if (!$this->tasks->contains($task)) {
+            $this->tasks->add($task);
+            $task->addOffer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTask(Task $task): static
+    {
+        if ($this->tasks->removeElement($task)) {
+            $task->removeOffer($this);
+        }
 
         return $this;
     }

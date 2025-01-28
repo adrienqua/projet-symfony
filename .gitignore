@@ -9,7 +9,5 @@
 
 # Tailwind & Webpack
 .DS_Store
-/postcss.config.js
-/tailwind.config.js
 package-lock.json
 yarn.lock

@@ -1,120 +1,120 @@
 APP\Entity\Offer:
-  offer_1:
-    title: "Compagnie pour diverses activités"
-    description: "Proposez ou recherchez une compagnie pour des moments agréables et diversifiés."
-    price: 50
-    category: "@category_social"
-    renter: "@user_renter_<numberBetween(1, 25)>"
-    tasks:
-      - "@task_social_<numberBetween(1, 5)>"
-      - "@task_social_<numberBetween(1, 5)>"
-      - "@task_entertainment_<numberBetween(1, 5)>"
-      - "@task_learning_<numberBetween(1, 5)>"
+    offer_1:
+        title: "Compagnie pour diverses activités"
+        description: "Proposez ou recherchez une compagnie pour des moments agréables et diversifiés."
+        price: 50
+        category: "@category_social"
+        renter: "@user_renter_<numberBetween(1, 25)>"
+        tasks:
+            - "@task_social_<numberBetween(1, 5)>"
+            - "@task_social_<numberBetween(1, 5)>"
+            - "@task_entertainment_<numberBetween(1, 5)>"
+            - "@task_learning_<numberBetween(1, 5)>"
 
-  offer_2:
-    title: "Partage d'activités et de passions"
-    description: "Partagez des activités ou apprenez ensemble dans une ambiance conviviale."
-    price: 40
-    category: "@category_learning"
-    renter: "@user_renter_<numberBetween(1, 25)>"
-    tasks:
-      - "@task_learning_<numberBetween(1, 5)>"
-      - "@task_learning_<numberBetween(1, 5)>"
-      - "@task_social_<numberBetween(1, 5)>"
-      - "@task_entertainment_<numberBetween(1, 5)>"
+    offer_2:
+        title: "Partage d'activités et de passions"
+        description: "Partagez des activités ou apprenez ensemble dans une ambiance conviviale."
+        price: 40
+        category: "@category_learning"
+        renter: "@user_renter_<numberBetween(1, 25)>"
+        tasks:
+            - "@task_learning_<numberBetween(1, 5)>"
+            - "@task_learning_<numberBetween(1, 5)>"
+            - "@task_social_<numberBetween(1, 5)>"
+            - "@task_entertainment_<numberBetween(1, 5)>"
 
-  offer_3:
-    title: "Moments de loisirs partagés"
-    description: "Profitez de loisirs variés à deux ou en groupe."
-    price: 60
-    category: "@category_entertainment"
-    renter: "@user_renter_<numberBetween(1, 25)>"
-    tasks:
-      - "@task_entertainment_<numberBetween(1, 5)>"
-      - "@task_entertainment_<numberBetween(1, 5)>"
-      - "@task_social_<numberBetween(1, 5)>"
-      - "@task_sport_<numberBetween(1, 5)>"
+    offer_3:
+        title: "Moments de loisirs partagés"
+        description: "Profitez de loisirs variés à deux ou en groupe."
+        price: 60
+        category: "@category_entertainment"
+        renter: "@user_renter_<numberBetween(1, 25)>"
+        tasks:
+            - "@task_entertainment_<numberBetween(1, 5)>"
+            - "@task_entertainment_<numberBetween(1, 5)>"
+            - "@task_social_<numberBetween(1, 5)>"
+            - "@task_sport_<numberBetween(1, 5)>"
 
-  offer_4:
-    title: "Accompagnement pour le sport"
-    description: "Recherchez ou proposez un accompagnement sportif pour motivation et partage."
-    price: 70
-    category: "@category_sport"
-    renter: "@user_renter_<numberBetween(1, 25)>"
-    tasks:
-      - "@task_sport_<numberBetween(1, 5)>"
-      - "@task_sport_<numberBetween(1, 5)>"
-      - "@task_social_<numberBetween(1, 5)>"
-      - "@task_entertainment_<numberBetween(1, 5)>"
+    offer_4:
+        title: "Accompagnement pour le sport"
+        description: "Recherchez ou proposez un accompagnement sportif pour motivation et partage."
+        price: 70
+        category: "@category_sport"
+        renter: "@user_renter_<numberBetween(1, 25)>"
+        tasks:
+            - "@task_sport_<numberBetween(1, 5)>"
+            - "@task_sport_<numberBetween(1, 5)>"
+            - "@task_social_<numberBetween(1, 5)>"
+            - "@task_entertainment_<numberBetween(1, 5)>"
 
-  offer_5:
-    title: "Découvertes et voyages partagés"
-    description: "Explorez et découvrez de nouveaux lieux accompagné d'une personne."
-    price: 100
-    category: "@category_travel"
-    renter: "@user_renter_<numberBetween(1, 25)>"
-    tasks:
-      - "@task_travel_<numberBetween(1, 5)>"
-      - "@task_travel_<numberBetween(1, 5)>"
-      - "@task_social_<numberBetween(1, 5)>"
-      - "@task_entertainment_<numberBetween(1, 5)>"
+    offer_5:
+        title: "Découvertes et voyages partagés"
+        description: "Explorez et découvrez de nouveaux lieux accompagné d'une personne."
+        price: 100
+        category: "@category_travel"
+        renter: "@user_renter_<numberBetween(1, 25)>"
+        tasks:
+            - "@task_travel_<numberBetween(1, 5)>"
+            - "@task_travel_<numberBetween(1, 5)>"
+            - "@task_social_<numberBetween(1, 5)>"
+            - "@task_entertainment_<numberBetween(1, 5)>"
 
-  offer_6:
-    title: "Aide et soutien quotidien"
-    description: "Proposez ou recherchez une aide pour des tâches simples du quotidien."
-    price: 30
-    category: "@category_helping"
-    renter: "@user_renter_<numberBetween(1, 25)>"
-    tasks:
-      - "@task_helping_<numberBetween(1, 5)>"
-      - "@task_helping_<numberBetween(1, 5)>"
-      - "@task_social_<numberBetween(1, 5)>"
-      - "@task_sport_<numberBetween(1, 5)>"
+    offer_6:
+        title: "Aide et soutien quotidien"
+        description: "Proposez ou recherchez une aide pour des tâches simples du quotidien."
+        price: 30
+        category: "@category_helping"
+        renter: "@user_renter_<numberBetween(1, 25)>"
+        tasks:
+            - "@task_helping_<numberBetween(1, 5)>"
+            - "@task_helping_<numberBetween(1, 5)>"
+            - "@task_social_<numberBetween(1, 5)>"
+            - "@task_sport_<numberBetween(1, 5)>"
 
-  offer_7:
-    title: "Expériences culturelles et sociales"
-    description: "Participez à des événements ou activités culturelles avec un accompagnement."
-    price: 80
-    category: "@category_social"
-    renter: "@user_renter_<numberBetween(1, 25)>"
-    tasks:
-      - "@task_social_<numberBetween(1, 5)>"
-      - "@task_social_<numberBetween(1, 5)>"
-      - "@task_entertainment_<numberBetween(1, 5)>"
-      - "@task_learning_<numberBetween(1, 5)>"
+    offer_7:
+        title: "Expériences culturelles et sociales"
+        description: "Participez à des événements ou activités culturelles avec un accompagnement."
+        price: 80
+        category: "@category_social"
+        renter: "@user_renter_<numberBetween(1, 25)>"
+        tasks:
+            - "@task_social_<numberBetween(1, 5)>"
+            - "@task_social_<numberBetween(1, 5)>"
+            - "@task_entertainment_<numberBetween(1, 5)>"
+            - "@task_learning_<numberBetween(1, 5)>"
 
-  offer_8:
-    title: "Moments détente et relaxation"
-    description: "Recherchez un accompagnement pour des moments de relaxation ou de bien-être."
-    price: 50
-    category: "@category_sport"
-    renter: "@user_renter_<numberBetween(1, 25)>"
-    tasks:
-      - "@task_sport_<numberBetween(1, 5)>"
-      - "@task_sport_<numberBetween(1, 5)>"
-      - "@task_helping_<numberBetween(1, 5)>"
-      - "@task_entertainment_<numberBetween(1, 5)>"
+    offer_8:
+        title: "Moments détente et relaxation"
+        description: "Recherchez un accompagnement pour des moments de relaxation ou de bien-être."
+        price: 50
+        category: "@category_sport"
+        renter: "@user_renter_<numberBetween(1, 25)>"
+        tasks:
+            - "@task_sport_<numberBetween(1, 5)>"
+            - "@task_sport_<numberBetween(1, 5)>"
+            - "@task_helping_<numberBetween(1, 5)>"
+            - "@task_entertainment_<numberBetween(1, 5)>"
 
-  offer_9:
-    title: "Activités créatives et éducatives"
-    description: "Apprenez ou partagez une activité créative dans une ambiance agréable."
-    price: 55
-    category: "@category_learning"
-    renter: "@user_renter_<numberBetween(1, 25)>"
-    tasks:
-      - "@task_learning_<numberBetween(1, 5)>"
-      - "@task_learning_<numberBetween(1, 5)>"
-      - "@task_social_<numberBetween(1, 5)>"
-      - "@task_entertainment_<numberBetween(1, 5)>"
+    offer_9:
+        title: "Activités créatives et éducatives"
+        description: "Apprenez ou partagez une activité créative dans une ambiance agréable."
+        price: 55
+        category: "@category_learning"
+        renter: "@user_renter_<numberBetween(1, 25)>"
+        tasks:
+            - "@task_learning_<numberBetween(1, 5)>"
+            - "@task_learning_<numberBetween(1, 5)>"
+            - "@task_social_<numberBetween(1, 5)>"
+            - "@task_entertainment_<numberBetween(1, 5)>"
 
-  offer_10:
-    title: "Divertissement varié à partager"
-    description: "Profitez de moments de loisirs variés avec un partenaire."
-    price: 65
-    category: "@category_entertainment"
-    renter: "@user_renter_<numberBetween(1, 25)>"
-    tasks:
-      - "@task_entertainment_<numberBetween(1, 5)>"
-      - "@task_entertainment_<numberBetween(1, 5)>"
-      - "@task_social_<numberBetween(1, 5)>"
-      - "@task_sport_<numberBetween(1, 5)>"
+    offer_10:
+        title: "Divertissement varié à partager"
+        description: "Profitez de moments de loisirs variés avec un partenaire."
+        price: 65
+        category: "@category_entertainment"
+        renter: "@user_renter_<numberBetween(1, 25)>"
+        tasks:
+            - "@task_entertainment_<numberBetween(1, 5)>"
+            - "@task_entertainment_<numberBetween(1, 5)>"
+            - "@task_social_<numberBetween(1, 5)>"
+            - "@task_sport_<numberBetween(1, 5)>"
