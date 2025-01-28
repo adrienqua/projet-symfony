@@ -52,12 +52,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private bool $offersAdultContent = false;
 
     /**
-     * @var Collection<int, Task>
-     */
-    #[ORM\ManyToMany(targetEntity: Task::class, inversedBy: 'users')]
-    private Collection $favoriteTasks;
-
-    /**
      * @var Collection<int, Notification>
      */
     #[ORM\OneToMany(targetEntity: Notification::class, mappedBy: 'user')]
@@ -69,12 +63,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'reviewedUser')]
     private Collection $reviews;
 
+    /**
+     * @var Collection<int, Task>
+     */
+    #[ORM\ManyToMany(targetEntity: Task::class, mappedBy: 'users')]
+    private Collection $favoriteTasks;
+
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];
-        $this->favoriteTasks = new ArrayCollection();
         $this->notifications = new ArrayCollection();
         $this->reviews = new ArrayCollection();
+        $this->favoriteTasks = new ArrayCollection();
     }
 
     public function getId(): int
@@ -205,30 +205,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Task>
-     */
-    public function getFavoriteTasks(): Collection
-    {
-        return $this->favoriteTasks;
-    }
-
-    public function addFavoriteTask(Task $favoriteTask): static
-    {
-        if (!$this->favoriteTasks->contains($favoriteTask)) {
-            $this->favoriteTasks->add($favoriteTask);
-        }
-
-        return $this;
-    }
-
-    public function removeFavoriteTask(Task $favoriteTask): static
-    {
-        $this->favoriteTasks->removeElement($favoriteTask);
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Notification>
      */
     public function getNotifications(): Collection
@@ -283,6 +259,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($review->getReviewedUser() === $this) {
                 $review->setReviewedUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Task>
+     */
+    public function getFavoriteTasks(): Collection
+    {
+        return $this->favoriteTasks;
+    }
+
+    public function addFavoriteTask(Task $favoriteTask): static
+    {
+        if (!$this->favoriteTasks->contains($favoriteTask)) {
+            $this->favoriteTasks->add($favoriteTask);
+            $favoriteTask->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteTask(Task $favoriteTask): static
+    {
+        if ($this->favoriteTasks->removeElement($favoriteTask)) {
+            $favoriteTask->removeUser($this);
         }
 
         return $this;

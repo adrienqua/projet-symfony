@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\TaskRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
@@ -12,49 +13,52 @@ class Task
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private int $id;
+    #[ORM\Column]
+    private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private string $title;
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
 
-    #[ORM\Column(type: 'text')]
-    private string $description;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
 
-    #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
-    private float $proposedPrice;
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private ?string $proposedPrice = null;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private \DateTimeImmutable $createdAt;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => false])]
-    private bool $isAdultContent = false;
-
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'tasks')]
-    private User $requester;
-
-    #[ORM\ManyToMany(targetEntity: Offer::class, inversedBy: 'tasks')]
-    private Collection $offers;
+    #[ORM\Column(nullable: true)]
+    private ?bool $isAdultContent = null;
 
     /**
      * @var Collection<int, User>
      */
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoriteTasks')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'favoriteTasks')]
     private Collection $users;
+
+    /**
+     * @var Collection<int, Offer>
+     */
+    #[ORM\ManyToMany(targetEntity: Offer::class, inversedBy: 'tasks')]
+    private Collection $offers;
+
+    #[ORM\ManyToOne(inversedBy: 'tasks')]
+    private ?Category $category = null;
 
     public function __construct()
     {
         $this->setCreatedAt(new \DateTimeImmutable());
-        $this->offers = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->offers = new ArrayCollection();
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -62,10 +66,11 @@ class Task
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
         return $this;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -73,21 +78,23 @@ class Task
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
         return $this;
     }
 
-    public function getProposedPrice(): float
+    public function getProposedPrice(): ?string
     {
         return $this->proposedPrice;
     }
 
-    public function setProposedPrice(float $proposedPrice): static
+    public function setProposedPrice(string $proposedPrice): static
     {
         $this->proposedPrice = $proposedPrice;
+
         return $this;
     }
 
-    public function getCreatedAt(): \DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -95,47 +102,19 @@ class Task
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
-    public function getIsAdultContent(): bool
+    public function isAdultContent(): ?bool
     {
         return $this->isAdultContent;
     }
 
-    public function setIsAdultContent(bool $isAdultContent): static
+    public function setAdultContent(?bool $isAdultContent): static
     {
         $this->isAdultContent = $isAdultContent;
-        return $this;
-    }
 
-    public function getRequester(): User
-    {
-        return $this->requester;
-    }
-
-    public function setRequester(User $requester): static
-    {
-        $this->requester = $requester;
-        return $this;
-    }
-
-    public function getOffers()
-    {
-        return $this->offers;
-    }
-
-    public function addOffer(Offer $offer): static
-    {
-        if (!$this->offers->contains($offer)) {
-            $this->offers[] = $offer;
-        }
-        return $this;
-    }
-
-    public function removeOffer(Offer $offer): static
-    {
-        $this->offers->removeElement($offer);
         return $this;
     }
 
@@ -151,7 +130,6 @@ class Task
     {
         if (!$this->users->contains($user)) {
             $this->users->add($user);
-            $user->addFavoriteTask($this);
         }
 
         return $this;
@@ -159,9 +137,43 @@ class Task
 
     public function removeUser(User $user): static
     {
-        if ($this->users->removeElement($user)) {
-            $user->removeFavoriteTask($this);
+        $this->users->removeElement($user);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Offer>
+     */
+    public function getOffers(): Collection
+    {
+        return $this->offers;
+    }
+
+    public function addOffer(Offer $offer): static
+    {
+        if (!$this->offers->contains($offer)) {
+            $this->offers->add($offer);
         }
+
+        return $this;
+    }
+
+    public function removeOffer(Offer $offer): static
+    {
+        $this->offers->removeElement($offer);
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
