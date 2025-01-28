@@ -22,14 +22,17 @@
 	<body class="bg-slate-100 text-gray-900 dark:bg-gray-800 dark:text-white font-inter flex flex-col min-h-screen">
 		{% include 'ui/navbar.html.twig' %}
 
-		{% block content %}{% endblock %}
+		<main class="mb-auto">
+			{% block content %}{% endblock %}
 
-		<!-- Bouton de changement de thème -->
-		<div class="fixed top-4 right-4 z-50">
-			<button id="theme-toggle" class="bg-gray-800 text-white p-2 rounded-full">
-				🌙
-			</button>
-		</div>
+			<!-- Bouton de changement de thème -->
+			<div class="fixed top-4 right-4 z-50">
+				<button id="theme-toggle" class="bg-gray-800 text-white p-2 rounded-full">
+					🌙
+				</button>
+			</div>
+
+		</main>
 
 		{% include 'ui/footer.html.twig' %}
 
