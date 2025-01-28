@@ -18,4 +18,14 @@ class HomeController extends AbstractController
             'offers' => $offers,
         ]);
     }
+
+    #[Route('/admin', name: 'admin_dashboard')]
+    public function indexAdmin(): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        return $this->render('admin/index.html.twig', [
+            'controller_name' => 'AdminController',
+        ]);
+    }
 }
