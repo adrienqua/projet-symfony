@@ -38,24 +38,25 @@
 
 		<script>
 			const themeToggleButton = document.getElementById('theme-toggle');
-const html = document.documentElement;
-const currentTheme = localStorage.getItem('theme');
+			const html = document.documentElement;
+			const currentTheme = localStorage.getItem('theme');
 
-if (currentTheme) {
-html.classList.add(currentTheme);
-}
+			if (currentTheme) {
+				html.classList.add(currentTheme);
+			}
 
-themeToggleButton ?. addEventListener('click', () => {
-if (html.classList.contains('dark')) {
-html.classList.remove('dark');
-localStorage.setItem('theme', 'light');
-themeToggleButton.innerHTML = '🌙';
-} else {
-html.classList.add('dark');
-localStorage.setItem('theme', 'dark');
-themeToggleButton.innerHTML = '☀️';
-}
-});
+			themeToggleButton ?. addEventListener('click', () => {
+				if (html.classList.contains('dark')) {
+					html.classList.remove('dark');
+					localStorage.setItem('theme', 'light');
+					themeToggleButton.innerHTML = '🌙';
+				}
+				else {
+					html.classList.add('dark');
+					localStorage.setItem('theme', 'dark');
+					themeToggleButton.innerHTML = '☀️';
+				}
+			});
 		</script>
 		{% block scripts %}{% endblock %}
 	</body>
