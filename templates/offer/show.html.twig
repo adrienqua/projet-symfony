@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offer Details{% endblock %}
+
+{% block content %}
+<div class="container mx-auto my-8">
+    <h1 class="text-3xl font-bold text-indigo-600 dark:text-gray-200 mb-6">Offre {{ offer.title }}</h1>
+
+    <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 mb-6">
+        <table class="w-full text-left border-collapse">
+            <tbody>
+                <tr class="border-b dark:border-gray-700">
+                    <th class="py-2 px-4 font-medium text-gray-600 dark:text-gray-300">Id</th>
+                    <td class="py-2 px-4 text-gray-800 dark:text-gray-200">{{ offer.id }}</td>
+                </tr>
+                <tr class="border-b dark:border-gray-700">
+                    <th class="py-2 px-4 font-medium text-gray-600 dark:text-gray-300">Titre</th>
+                    <td class="py-2 px-4 text-gray-800 dark:text-gray-200">{{ offer.title }}</td>
+                </tr>
+                <tr class="border-b dark:border-gray-700">
+                    <th class="py-2 px-4 font-medium text-gray-600 dark:text-gray-300">Description</th>
+                    <td class="py-2 px-4 text-gray-800 dark:text-gray-200">{{ offer.description }}</td>
+                </tr>
+                <tr class="border-b dark:border-gray-700">
+                    <th class="py-2 px-4 font-medium text-gray-600 dark:text-gray-300">Prix</th>
+                    <td class="py-2 px-4 text-gray-800 dark:text-gray-200">{{ offer.price }} €</td>
+                </tr>
+                <tr class="border-b dark:border-gray-700">
+                    <th class="py-2 px-4 font-medium text-gray-600 dark:text-gray-300">Créé le</th>
+                    <td class="py-2 px-4 text-gray-800 dark:text-gray-200">{{ offer.createdAt ? offer.createdAt|date('d/m/Y \à H:i:s') : '' }}</td>
+                </tr>
+                <tr class="border-b dark:border-gray-700">
+                    <th class="py-2 px-4 font-medium text-gray-600 dark:text-gray-300">Contient du contenu adulte</th>
+                    <td class="py-2 px-4 text-gray-800 dark:text-gray-200">
+                        {{ offer.isAdultContent ? 'Oui' : 'Non' }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="flex justify-between">
+        <a href="{{ path('app_offer_index') }}" 
+           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+           ← Revenir aux offres
+        </a>
+
+        <div class="space-x-2">
+            <a href="{{ path('app_offer_edit', {'id': offer.id}) }}" 
+               class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+               Modifier
+            </a>
+            {{ include('offer/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+{% endblock %}

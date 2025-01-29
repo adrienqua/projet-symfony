@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Offer{% endblock %}
+
+{% block content %}
+<div class="container mx-auto my-8">
+    <h1 class="text-3xl font-bold text-indigo-600 dark:text-gray-200 mb-6">Liste des offres</h1>
+
+    <div class="overflow-x-auto shadow-md rounded-lg bg-white dark:bg-gray-800 p-6">
+        <table class="w-full text-left border-collapse">
+            <thead class="bg-indigo-500 dark:bg-gray-700 text-white">
+                <tr>
+                    <th class="py-3 px-4">Id</th>
+                    <th class="py-3 px-4">Titre</th>
+                    <th class="py-3 px-4">Description</th>
+                    <th class="py-3 px-4">Prix</th>
+                    <th class="py-3 px-4">Créé le</th>
+                    <th class="py-3 px-4">Contenu Adulte</th>
+                    <th class="py-3 px-4 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for offer in offers %}
+                <tr class="border-b dark:border-gray-700">
+                    <td class="py-3 px-4 text-gray-800 dark:text-gray-200">{{ offer.id }}</td>
+                    <td class="py-3 px-4 text-gray-800 dark:text-gray-200">{{ offer.title }}</td>
+                    <td class="py-3 px-4 text-gray-800 dark:text-gray-200">{{ offer.description }}</td>
+                    <td class="py-3 px-4 text-gray-800 dark:text-gray-200">{{ offer.price }} €</td>
+                    <td class="py-3 px-4 text-gray-800 dark:text-gray-200">
+                        {{ offer.createdAt ? offer.createdAt|date('d/m/Y \à H:i:s') : '' }}
+                    </td>
+                    <td class="py-3 px-4 text-gray-800 dark:text-gray-200">
+                        {{ offer.isAdultContent ? 'Oui' : 'Non' }}
+                    </td>
+                    <td class="py-3 px-4 flex justify-center space-x-2">
+                        <a href="{{ path('app_offer_show', {'id': offer.id}) }}" 
+                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded">
+                           Aperçu
+                        </a>
+                        <a href="{{ path('app_offer_edit', {'id': offer.id}) }}" 
+                           class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-4 rounded">
+                           Modifier
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7" class="text-center py-4 text-gray-600 dark:text-gray-300">
+                        Aucune offre trouvée
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-6 text-right">
+        <a href="{{ path('app_offer_new') }}" 
+           class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+           Créer une nouvelle offre
+        </a>
+    </div>
+</div>
+{% endblock %}
