@@ -111,10 +111,9 @@ class Task
         return $this->isAdultContent;
     }
 
-    public function setAdultContent(?bool $isAdultContent): static
+    public function setIsAdultContent(bool $isAdultContent): self
     {
         $this->isAdultContent = $isAdultContent;
-
         return $this;
     }
 
