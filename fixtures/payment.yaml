@@ -1,5 +1,5 @@
 App\Entity\Payment:
-  payment_{1..25}:
-    amount: <numberBetween(10, 100)>
-    contract: "@contract_<numberBetween(1, 25)>"
-    method: "VISA"
+    payment_{1..25}:
+        amount: <numberBetween(10, 100)>
+        order: "@order_<numberBetween(1, 25)>"
+        method: "VISA"

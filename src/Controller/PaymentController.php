@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Task;
 use App\Service\StripeService;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Checkout\Session;
@@ -22,10 +23,15 @@ class PaymentController extends AbstractController
     }
 
     #[Route('/paiement', name: 'app_stripe')]
-    public function createPaymentIntent(EntityManagerInterface $entityManager): Response
+    public function createPaymentIntent(EntityManagerInterface $entityManager, Request $request): Response
     {
 
-  //      $order = $entityManager->getRepository(Order::class)->findOneByReference(['reference' =>  $reference]);
+        $taskId = $request->query->get('task');
+        $selectedTask = $entityManager->getRepository(Task::class)->find($taskId);
+
+        if (!$selectedTask) {
+            throw $this->createNotFoundException('Task not found');
+        }
 
         Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
         
@@ -36,9 +42,9 @@ class PaymentController extends AbstractController
             $stripe_cart[0] = [ 
                 'price_data' => [
                     'currency' => 'eur',
-                    'unit_amount' => 50*100,
+                    'unit_amount' => $selectedTask->getPrice() * 100,
                     'product_data' => [
-                        'name' => "test",
+                        'name' => $selectedTask->getTitle(),
                     ],
                 ],
                 'quantity' => 1,

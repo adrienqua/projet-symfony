@@ -22,16 +22,16 @@ class Review
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
 
-    #[ORM\ManyToOne(targetEntity: Offer::class)]
-    private Offer $offer;
-    
     public function __construct()
     {
         $this->setCreatedAt(new \DateTimeImmutable());
     }
 
     #[ORM\ManyToOne(inversedBy: 'reviews')]
-    private ?User $reviewedUser = null;
+    private ?User $author = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reviews')]
+    private ?Offer $offer = null;
 
     public function getId(): int
     {
@@ -71,25 +71,26 @@ class Review
         return $this;
     }
 
-    public function getOffer(): Offer
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): static
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    public function getOffer(): ?Offer
     {
         return $this->offer;
     }
 
-    public function setOffer(Offer $offer): static
+    public function setOffer(?Offer $offer): static
     {
         $this->offer = $offer;
-        return $this;
-    }
-
-    public function getReviewedUser(): ?User
-    {
-        return $this->reviewedUser;
-    }
-
-    public function setReviewedUser(?User $reviewedUser): static
-    {
-        $this->reviewedUser = $reviewedUser;
 
         return $this;
     }

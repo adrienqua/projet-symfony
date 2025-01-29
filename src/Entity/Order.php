@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ContractRepository;
+use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ContractRepository::class)]
-class Contract
+#[ORM\Entity(repositoryClass: OrderRepository::class)]
+#[ORM\Table(name: '`order`')]
+class Order
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,10 +24,10 @@ class Contract
     #[ORM\ManyToOne(targetEntity: Task::class)]
     private Task $task;
 
-    #[ORM\OneToMany(mappedBy: 'contract', targetEntity: Message::class)]
+    #[ORM\OneToMany(mappedBy: 'order', targetEntity: Message::class)]
     private $messages;
 
-    #[ORM\OneToMany(mappedBy: 'contract', targetEntity: Payment::class)]
+    #[ORM\OneToMany(mappedBy: 'order', targetEntity: Payment::class)]
     private $payments;
 
     public function __construct()

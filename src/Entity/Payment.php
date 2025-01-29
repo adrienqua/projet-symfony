@@ -19,8 +19,8 @@ class Payment
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
 
-    #[ORM\ManyToOne(targetEntity: Contract::class, inversedBy: 'payments')]
-    private Contract $contract;
+    #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'payments')]
+    private Order $order;
 
     #[ORM\Column(type: 'string')]
     private string $method;
@@ -56,14 +56,14 @@ class Payment
         $this->createdAt = $createdAt;
         return $this;
     }
-    public function getContract(): Contract
+    public function getOrder(): Order
     {
-        return $this->contract;
+        return $this->order;
     }
 
-    public function setContract(Contract $contract): static
+    public function setOrder(Order $order): static
     {
-        $this->contract = $contract;
+        $this->order = $order;
         return $this;
     }
 

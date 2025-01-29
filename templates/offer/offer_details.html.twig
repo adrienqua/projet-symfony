@@ -6,6 +6,7 @@
 
 {% block content %}
 	<article class="container mx-auto ">
+
 		<div class="flex flex-col md:flex-row gap-12 rounded-3xl shadow-md bg-white p-8 mb-8 dark:bg-gray-700 ">
 			<div class="w-full md:w-3/5">
 				<Image src="https://placehold.co/600x400/png" alt={product.imageAlt || product.name} width={600} height={400} class="rounded-lg w-full"/>
@@ -16,13 +17,30 @@
 				<p class="font-semibold">{{offer.description}}</p>
 				<p class="font-normal text-fuchsia-400 dark:text-fuchsia-200 mt-2 mb-6">{{offer.price}}
 					€</p>
-				<a href="{{path('app_stripe')}}" id="pay-button" class="w-full py-2 px-4 border transition-all duration-300 border-fuchsia-400 text-fuchsia-400 hover:text-gray-800 font-medium rounded-xl hover:bg-fuchsia-300 focus:ring-2 focus:ring-fuchsia-200 focus:ring-offset-2 dark:border-fuchsia-200 dark:text-fuchsia-200 dark:hover:bg-fuchsia-300  dark:focus:ring-fuchsia-100 dark:hover:text-gray-800">
-					Acheter ce service
-				</a>
+
+				{{ form_start(taskForm) }}
+				{{ form_widget(taskForm) }}
+				{{ form_end(taskForm) }}
+
+				{# <a href="{{path('app_stripe')}}" id="pay-button" class="w-full py-2 px-4 border transition-all duration-300 border-fuchsia-400 text-fuchsia-400 hover:text-gray-800 font-medium rounded-xl hover:bg-fuchsia-300 focus:ring-2 focus:ring-fuchsia-200 focus:ring-offset-2 dark:border-fuchsia-200 dark:text-fuchsia-200 dark:hover:bg-fuchsia-300  dark:focus:ring-fuchsia-100 dark:hover:text-gray-800">
+									Acheter ce service
+								</a> #}
 			</div>
 
 		</div>
-	</article>
-{% endblock %}
 
+		<div class="">
+			<h2 class="text-2xl font-bold mb-4">Commentaires ({{ offer.reviews|length }})</h2>
 
+			<div class="flex flex-col  ">
+				{% for review in offer.reviews %}
+					<div class="gap-4 rounded-3xl shadow-md bg-white p-8 mb-8 dark:bg-gray-700">
+						<p class="font-bold">{{review.author.username}}</p>
+						<p class="text-sm text-gray-500">{{review.createdAt|date('d/m/Y H:i')}}</p>
+						<p class="font-normal mt-2">{{review.comment}}</p>
+					</div>
+				{% endfor %}
+			</div>
+
+		</article>
+	{% endblock %}

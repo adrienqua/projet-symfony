@@ -44,11 +44,18 @@ class Offer
     #[ORM\ManyToMany(targetEntity: Task::class, mappedBy: 'offers')]
     private Collection $tasks;
 
+    /**
+     * @var Collection<int, Review>
+     */
+    #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'offer')]
+    private Collection $reviews;
+
     public function __construct()
     {
         $this->setCreatedAt(new \DateTimeImmutable());
         $this->setIsAdultContent(false);
         $this->tasks = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): int
@@ -157,6 +164,36 @@ class Offer
     {
         if ($this->tasks->removeElement($task)) {
             $task->removeOffer($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): static
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews->add($review);
+            $review->setOffer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): static
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getOffer() === $this) {
+                $review->setOffer(null);
+            }
         }
 
         return $this;

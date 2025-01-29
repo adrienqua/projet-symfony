@@ -251,7 +251,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->reviews->contains($review)) {
             $this->reviews->add($review);
-            $review->setReviewedUser($this);
+            $review->setAuthor($this);
         }
 
         return $this;
@@ -261,8 +261,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->reviews->removeElement($review)) {
             // set the owning side to null (unless already changed)
-            if ($review->getReviewedUser() === $this) {
-                $review->setReviewedUser(null);
+            if ($review->getAuthor() === $this) {
+                $review->setAuthor(null);
             }
         }
 

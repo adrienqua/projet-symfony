@@ -25,8 +25,8 @@ class Message
     #[ORM\ManyToOne(targetEntity: User::class)]
     private User $recipient;
 
-    #[ORM\ManyToOne(targetEntity: Contract::class, inversedBy: 'messages')]
-    private ?Contract $contract;
+    #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'messages')]
+    private ?Order $order;
 
     public function __construct()
     {
@@ -82,14 +82,14 @@ class Message
         return $this;
     }
 
-    public function getContract(): ?Contract
+    public function getOrder(): ?Order
     {
-        return $this->contract;
+        return $this->order;
     }
 
-    public function setContract(?Contract $contract): static
+    public function setOrder(?Order $order): static
     {
-        $this->contract = $contract;
+        $this->order = $order;
         return $this;
     }
 }

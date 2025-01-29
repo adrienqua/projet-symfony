@@ -23,7 +23,7 @@ class Task
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $proposedPrice = null;
+    private ?string $price = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -82,14 +82,14 @@ class Task
         return $this;
     }
 
-    public function getProposedPrice(): ?string
+    public function getPrice(): ?string
     {
-        return $this->proposedPrice;
+        return $this->price;
     }
 
-    public function setProposedPrice(string $proposedPrice): static
+    public function setPrice(string $price): static
     {
-        $this->proposedPrice = $proposedPrice;
+        $this->price = $price;
 
         return $this;
     }

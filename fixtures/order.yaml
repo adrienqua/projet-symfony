@@ -1,0 +1,4 @@
+App\Entity\Order:
+    order_{1..25}:
+        status: "PENDING"
+        task: "@task_social_<numberBetween(1, 5)>"

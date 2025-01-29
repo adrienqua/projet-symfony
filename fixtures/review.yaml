@@ -1,6 +1,6 @@
 App\Entity\Review:
-  review_{1..25}:
-    rating: <numberBetween(1, 5)>
-    comment: "<sentence(10)>"
-    reviewedUser: "@user_renter_<numberBetween(1, 25)>"
-    offer: "@offer_<numberBetween(1, 10)>"
+    review_{1..25}:
+        rating: <numberBetween(1, 5)>
+        comment: "<sentence(10)>"
+        author: "@user_base_<numberBetween(1, 25)>"
+        offer: "@offer_<numberBetween(1, 10)>"

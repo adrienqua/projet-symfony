@@ -1,6 +1,6 @@
 App\Entity\Message:
-  message_{1..200}:
-    content: "<sentence(10)>"
-    sender: "@user_base_<numberBetween(1, 25)>"
-    recipient: "@user_renter_<numberBetween(1, 25)>"
-    contract: "@contract_<numberBetween(1, 25)>"
+    message_{1..200}:
+        content: "<sentence(10)>"
+        sender: "@user_base_<numberBetween(1, 25)>"
+        recipient: "@user_renter_<numberBetween(1, 25)>"
+        order: "@order_<numberBetween(1, 25)>"
