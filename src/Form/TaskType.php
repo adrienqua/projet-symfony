@@ -18,7 +18,7 @@ class TaskType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('proposedPrice')
+            ->add('price')
             ->add('createdAt', null, [
                 'widget' => 'single_text',
             ])
