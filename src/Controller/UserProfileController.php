@@ -20,6 +20,10 @@ final class UserProfileController extends AbstractController
         $form = $this->createForm(UserProfileType::class, $user);
         $form->handleRequest($request);
 
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($user);
             $entityManager->flush();

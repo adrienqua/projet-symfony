@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Offer;
+use App\Entity\Order;
+use App\Entity\Payment;
 use App\Entity\Task;
+use App\Enum\OrderStatusEnum;
 use App\Service\StripeService;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Checkout\Session;
@@ -25,9 +29,13 @@ class PaymentController extends AbstractController
     #[Route('/paiement', name: 'app_stripe')]
     public function createPaymentIntent(EntityManagerInterface $entityManager, Request $request): Response
     {
+        $user = $this->getUser();
 
         $taskId = $request->query->get('task');
+        $offerId = $request->query->get('offer');
+
         $selectedTask = $entityManager->getRepository(Task::class)->find($taskId);
+        $offer = $entityManager->getRepository(Offer::class)->find($offerId);
 
         if (!$selectedTask) {
             throw $this->createNotFoundException('Task not found');
@@ -36,7 +44,6 @@ class PaymentController extends AbstractController
         Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
         
         $DOMAIN= $_ENV['APP_DOMAIN'];
-
 
         $stripe_cart = [];
             $stripe_cart[0] = [ 
@@ -64,7 +71,7 @@ class PaymentController extends AbstractController
 
 
         $checkout_session = Session::create([
-            'customer_email' => "666adrien@gmail.com",
+            'customer_email' => $user->getEmail(),
             'line_items' => [
                 $stripe_cart
             ],
@@ -72,6 +79,25 @@ class PaymentController extends AbstractController
             'success_url' => $DOMAIN. '/commande/succes/{CHECKOUT_SESSION_ID}',
             'cancel_url' => $DOMAIN. '/commande/echec/{CHECKOUT_SESSION_ID}',
         ]);
+
+
+
+
+
+        $order = new Order();
+        $order->setTask($selectedTask);
+        $order->setUser($user);
+        $order->setStatus(OrderStatusEnum::PENDING);
+        $order->setOffer($offer);
+        $entityManager->persist($order);
+
+        $payment = new Payment();
+        $payment->setAmount($selectedTask->getPrice());
+        $payment->setMethod('VISA');
+        $payment->setStripeSessionId($checkout_session->id);
+        $payment->setOrder($order);
+        $entityManager->persist($payment);
+        
 
         //$order->setStripeSessionId($checkout_session->id);
         $entityManager->flush();

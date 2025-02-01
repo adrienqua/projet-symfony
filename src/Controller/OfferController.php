@@ -21,6 +21,7 @@ class OfferController extends AbstractController
     {
         $offers = $offerRepository->findAll();
 
+
         return $this->render('offer/offer_list.html.twig', [
             'offers' => $offers,
         ]);
@@ -30,6 +31,8 @@ class OfferController extends AbstractController
     public function offerDetails(string $id, OfferRepository $offerRepository, Request $request): Response
     {
         $offer = $offerRepository->find($id);
+
+        $user = $this->getUser();
 
         $form = $this->createFormBuilder()
             ->add('tasks', ChoiceType::class, [
@@ -51,8 +54,14 @@ class OfferController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $selectedTask = $form->get('tasks')->getData();
-            return $this->redirectToRoute('app_stripe', ['task' => $selectedTask->getId()]);
+            if ($user) {
+                return $this->redirectToRoute('app_stripe', ['task' => $selectedTask->getId(),'offer' => $offer->getId()]);
+            } else {
+                return $this->redirectToRoute('app_login');
+            }
         }
+
+    
 
         return $this->render('offer/offer_details.html.twig', [
             'offer' => $offer,

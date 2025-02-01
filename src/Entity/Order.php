@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\OrderStatusEnum;
 use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,8 +16,8 @@ class Order
     #[ORM\Column(type: 'integer')]
     private int $id;
 
-    #[ORM\Column(type: 'string')]
-    private string $status;
+    #[ORM\Column(enumType: OrderStatusEnum::class, options: ["default" => OrderStatusEnum::PENDING])]
+    private OrderStatusEnum $status;
 
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
@@ -27,8 +28,14 @@ class Order
     #[ORM\OneToMany(mappedBy: 'order', targetEntity: Message::class)]
     private $messages;
 
-    #[ORM\OneToMany(mappedBy: 'order', targetEntity: Payment::class)]
+    #[ORM\OneToMany(mappedBy: 'order', targetEntity: Payment::class, cascade: ['persist'])]
     private $payments;
+
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?Offer $offer = null;
 
     public function __construct()
     {
@@ -42,12 +49,12 @@ class Order
         return $this->id;
     }
 
-    public function getStatus(): string
+    public function getStatus(): OrderStatusEnum
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): static
+    public function setStatus(OrderStatusEnum $status): static
     {
         $this->status = $status;
         return $this;
@@ -106,6 +113,30 @@ class Order
     public function removePayment(Payment $payment): static
     {
         $this->payments->removeElement($payment);
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getOffer(): ?Offer
+    {
+        return $this->offer;
+    }
+
+    public function setOffer(?Offer $offer): static
+    {
+        $this->offer = $offer;
+
         return $this;
     }
 }

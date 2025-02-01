@@ -19,11 +19,14 @@ class Payment
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
 
-    #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'payments')]
+    #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'payments', cascade: ['persist'])]
     private Order $order;
 
     #[ORM\Column(type: 'string')]
     private string $method;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $stripeSessionId = null;
 
     public function __construct()
     {
@@ -75,6 +78,18 @@ class Payment
     public function setMethod(string $method): static
     {
         $this->method = $method;
+        return $this;
+    }
+
+    public function getStripeSessionId(): ?string
+    {
+        return $this->stripeSessionId;
+    }
+
+    public function setStripeSessionId(?string $stripeSessionId): static
+    {
+        $this->stripeSessionId = $stripeSessionId;
+
         return $this;
     }
 }

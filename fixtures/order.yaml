@@ -1,4 +1,6 @@
 App\Entity\Order:
     order_{1..25}:
-        status: "PENDING"
+        status: !php/const \App\Enum\OrderStatusEnum::PAID
         task: "@task_social_<numberBetween(1, 5)>"
+        user: "@user_base_<numberBetween(1, 25)>"
+        offer: "@offer_<numberBetween(1, 10)>"

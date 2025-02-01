@@ -14,12 +14,12 @@ class UserProfileType extends AbstractType
         public function buildForm(FormBuilderInterface $builder, array $options): void
         {
             $builder
-                ->add('username')
-                ->add('email')
-                ->add('lastName')
-                ->add('firstName')
-                ->add('birthDate')
-                ->add('gender');
+                ->add('username', null, ['label' => 'Nom d\'utilisateur'])
+                ->add('email', null, ['label' => 'Email'])
+                ->add('lastName', null, ['label' => 'Nom de famille'])
+                ->add('firstName', null, ['label' => 'Prénom'])
+                ->add('birthDate', null, ['label' => 'Date de naissance'])
+                ->add('gender', null, ['label' => 'Genre']);
         }
     
         public function configureOptions(OptionsResolver $resolver): void
