@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\admin;
 
 use App\Entity\Task;
 use App\Form\TaskType;
@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/task')]
-final class TaskController extends AbstractController
+final class AdminTaskController extends AbstractController
 {
     #[Route(name: 'app_task_index', methods: ['GET'])]
     public function index(TaskRepository $taskRepository): Response
     {
-        return $this->render('task/index.html.twig', [
+        return $this->render('admin/task/index.html.twig', [
             'tasks' => $taskRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ final class TaskController extends AbstractController
             return $this->redirectToRoute('app_task_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('task/new.html.twig', [
+        return $this->render('admin/task/new.html.twig', [
             'task' => $task,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ final class TaskController extends AbstractController
     #[Route('/{id}', name: 'app_task_show', methods: ['GET'])]
     public function show(Task $task): Response
     {
-        return $this->render('task/show.html.twig', [
+        return $this->render('admin/task/show.html.twig', [
             'task' => $task,
         ]);
     }
@@ -62,7 +62,7 @@ final class TaskController extends AbstractController
             return $this->redirectToRoute('app_task_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('task/edit.html.twig', [
+        return $this->render('admin/task/edit.html.twig', [
             'task' => $task,
             'form' => $form,
         ]);

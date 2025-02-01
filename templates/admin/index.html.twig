@@ -1,47 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tableau de bord Admin{% endblock %}
+{% block title %}Tableau de bord Admin
+{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-    <h1 class="mb-4 text-2xl font-bold">Tableau de bord Admin</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Card pour chaque entité à gérer -->
-        <div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg">
-            <div class="p-4">
-                <h5 class="text-lg font-semibold mb-2">Gérer les Catégories</h5>
-                <p class="text-gray-600 dark:text-white mb-4">
-                    Ajouter, modifier ou supprimer des catégories.
-                </p>
-                <a href="{{ path('app_category_index') }}" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
-                    Voir les catégories
-                </a>
-            </div>
-        </div>
+	<div class="container my-5 mx-auto max-w-4xl">
+		<h1 class="mb-4 text-2xl font-bold">Tableau de bord Admin</h1>
+		<div
+			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+			<!-- Card pour chaque entité à gérer -->
+			<div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg">
+				<div class="p-4">
+					<h5 class="text-lg font-semibold mb-2">Gérer les Catégories</h5>
+					<p class="text-gray-600 dark:text-white mb-4">
+						Ajouter, modifier ou supprimer des catégories.
+					</p>
+					<a href="{{ path('app_category_index') }}" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
+						Voir les catégories
+					</a>
+				</div>
+			</div>
 
-        <div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg">
-            <div class="p-4">
-                <h5 class="text-lg font-semibold mb-2">Gérer les Offres</h5>
-                <p class="text-gray-600 dark:text-white mb-4">
-                    Ajouter, modifier ou supprimer des offres.
-                </p>
-                <a href="{{ path('app_offer_index') }}" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
-                    Voir les offres
-                </a>
-            </div>
-        </div>
+			<div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg">
+				<div class="p-4">
+					<h5 class="text-lg font-semibold mb-2">Gérer les Offres</h5>
+					<p class="text-gray-600 dark:text-white mb-4">
+						Ajouter, modifier ou supprimer des offres.
+					</p>
+					<a href="{{ path('app_offer_index') }}" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
+						Voir les offres
+					</a>
+				</div>
+			</div>
 
-        <div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg">
-            <div class="p-4">
-                <h5 class="text-lg font-semibold mb-2">Gérer les Tâches</h5>
-                <p class="text-gray-600 dark:text-white mb-4">
-                    Ajouter, modifier ou supprimer des tâches.
-                </p>
-                <a href="{{ path('app_task_index') }}" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
-                    Voir les tâches
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+			<div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg">
+				<div class="p-4">
+					<h5 class="text-lg font-semibold mb-2">Gérer les Tâches</h5>
+					<p class="text-gray-600 dark:text-white mb-4">
+						Ajouter, modifier ou supprimer des tâches.
+					</p>
+					<a href="{{ path('app_task_index') }}" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
+						Voir les tâches
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
