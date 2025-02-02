@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la commande{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Modifier la commande</h1>
+    
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        {{ include('admin/order/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+    </div>
+
+    <div class="mt-6 flex justify-between items-center">
+        <a href="{{ path('app_admin_order_index') }}" class="text-blue-600 dark:text-blue-400 hover:underline">← Retour aux commandes</a>
+        {{ include('admin/order/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}
