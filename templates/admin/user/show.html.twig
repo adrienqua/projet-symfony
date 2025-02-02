@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur{% endblock %}
+
+{% block content %}
+    <section class="container mx-auto py-12">
+        <h1 class="text-3xl font-bold text-center mb-8">Détails de l'utilisateur</h1>
+        <div class="bg-white shadow-md rounded-lg overflow-hidden dark:bg-gray-700">
+            <table class="table-auto w-full text-left border-collapse">
+                <tbody>
+                    <tr class="border-b dark:border-gray-600">
+                        <th class="p-4 font-medium text-gray-600 dark:text-gray-300">ID</th>
+                        <td class="p-4">{{ user.id }}</td>
+                    </tr>
+                    <tr class="border-b dark:border-gray-600">
+                        <th class="p-4 font-medium text-gray-600 dark:text-gray-300">Nom d'utilisateur</th>
+                        <td class="p-4">{{ user.username }}</td>
+                    </tr>
+                    <tr class="border-b dark:border-gray-600">
+                        <th class="p-4 font-medium text-gray-600 dark:text-gray-300">Nom</th>
+                        <td class="p-4">{{ user.lastName }}</td>
+                    </tr>
+                    <tr class="border-b dark:border-gray-600">
+                        <th class="p-4 font-medium text-gray-600 dark:text-gray-300">Prénom</th>
+                        <td class="p-4">{{ user.firstName }}</td>
+                    </tr>
+                    <tr class="border-b dark:border-gray-600">
+                        <th class="p-4 font-medium text-gray-600 dark:text-gray-300">Date de naissance</th>
+                        <td class="p-4">{{ user.birthDate ? user.birthDate|date('Y-m-d') : 'Non spécifiée' }}</td>
+                    </tr>
+                    <tr class="border-b dark:border-gray-600">
+                        <th class="p-4 font-medium text-gray-600 dark:text-gray-300">Genre</th>
+                        <td class="p-4">{{ user.gender }}</td>
+                    </tr>
+                    <tr class="border-b dark:border-gray-600">
+                        <th class="p-4 font-medium text-gray-600 dark:text-gray-300">Email</th>
+                        <td class="p-4">{{ user.email }}</td>
+                    </tr>
+                    <tr class="border-b dark:border-gray-600">
+                        <th class="p-4 font-medium text-gray-600 dark:text-gray-300">Mot de passe</th>
+                        <td class="p-4">{{ user.password }}</td>
+                    </tr>
+                    <tr class="border-b dark:border-gray-600">
+                        <th class="p-4 font-medium text-gray-600 dark:text-gray-300">Rôles</th>
+                        <td class="p-4">{{ user.roles ? user.roles|json_encode : 'Aucun rôle' }}</td>
+                    </tr>
+                    <tr class="border-b dark:border-gray-600">
+                        <th class="p-4 font-medium text-gray-600 dark:text-gray-300">Contenu adulte autorisé</th>
+                        <td class="p-4">{{ user.offersAdultContent ? 'Oui' : 'Non' }}</td>
+                    </tr>
+                    <tr>
+                        <th class="p-4 font-medium text-gray-600 dark:text-gray-300">Vérifié</th>
+                        <td class="p-4">{{ user.isVerified ? 'Oui' : 'Non' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="flex justify-between mt-8">
+            <a href="{{ path('app_user_index') }}" class="text-fuchsia-500 hover:underline">Retour à la liste</a>
+            <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="text-blue-500 hover:underline">Modifier</a>
+            {{ include('admin/user/_delete_form.html.twig') }}
+        </div>
+    </section>
+{% endblock %}

@@ -23,7 +23,6 @@ class UserType extends AbstractType
             ->add('gender')
             ->add('email')
             ->add('password')
-            ->add('roles')
             ->add('offersAdultContent')
             ->add('isVerified')
             ->add('favoriteTasks', EntityType::class, [
