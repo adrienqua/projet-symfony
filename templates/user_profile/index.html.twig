@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block content %}
-	<section class="container mx-auto mb-12 max-w-xl">
+	<section class="container mx-auto mb-12 max-w-xl px-4">
 		<h1 class="text-3xl font-bold text-center mb-8">Bonjour,
 			{{ app.user.username }}</h1><br>
 
@@ -59,20 +59,23 @@
 		</div>
 
 	</section>
-	<section class="container mx-auto mb-12 max-w-6xl">
+	<section class="container mx-auto mb-12 max-w-6xl px-4">
 		<h2 class="text-2xl font-bold text-center mb-6">Commandes</h2>
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 :b">
-			{% if app.user.orders is empty %}
+		{% if app.user.orders is empty %}
+			<div class="rounded-3xl shadow-md bg-white p-8 dark:bg-gray-700">
 				<p class="text-center">Aucune commande disponible.</p>
-			{% else %}
+			</div>
+		{% else %}
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 				{% for order in app.user.orders %}
 					{{ include('ui/order_card.html.twig') }}
 				{% endfor %}
-			{% endif %}
-		</div>
+			</div>
+
+		{% endif %}
 
 	</section>
-	<div class="text-center">
+	<div class="text-center px-4">
 		<a href="{{ path('app_logout') }}" id="pay-button" class="w-full py-2 px-4 border transition-all duration-300 border-fuchsia-400 text-fuchsia-400 hover:text-gray-800 font-medium rounded-2xl hover:bg-fuchsia-300 focus:ring-2 focus:ring-fuchsia-200 focus:ring-offset-2 dark:border-fuchsia-200 dark:text-fuchsia-200 dark:hover:bg-fuchsia-300 dark:focus:ring-fuchsia-100 dark:hover:text-gray-800">
 			Se déconnecter
 		</a>

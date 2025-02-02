@@ -22,7 +22,7 @@ class ChangePasswordFormType extends AbstractType
                 'options' => [
                     'attr' => [
                         'autocomplete' => 'new-password',
-                        'class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100',
+                        'class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800',
                     ],
                 ],
                 'first_options' => [

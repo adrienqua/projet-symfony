@@ -19,14 +19,18 @@ class Message
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $sentAt;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
-    private User $sender;
-
+    #[ORM\ManyToOne(inversedBy: 'messages')]
+    private ?User $sender = null;
+    
     #[ORM\ManyToOne(targetEntity: User::class)]
     private User $recipient;
 
     #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'messages')]
     private ?Order $order;
+
+    #[ORM\ManyToOne(inversedBy: 'messages')]
+    private ?Conversation $conversation = null;
+
 
     public function __construct()
     {
@@ -60,16 +64,6 @@ class Message
         return $this;
     }
 
-    public function getSender(): User
-    {
-        return $this->sender;
-    }
-
-    public function setSender(User $sender): static
-    {
-        $this->sender = $sender;
-        return $this;
-    }
 
     public function getRecipient(): User
     {
@@ -90,6 +84,30 @@ class Message
     public function setOrder(?Order $order): static
     {
         $this->order = $order;
+        return $this;
+    }
+
+    public function getSender(): ?User
+    {
+        return $this->sender;
+    }
+
+    public function setSender(?User $sender): static
+    {
+        $this->sender = $sender;
+
+        return $this;
+    }
+
+    public function getConversation(): ?Conversation
+    {
+        return $this->conversation;
+    }
+
+    public function setConversation(?Conversation $conversation): static
+    {
+        $this->conversation = $conversation;
+
         return $this;
     }
 }

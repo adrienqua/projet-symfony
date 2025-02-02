@@ -40,4 +40,17 @@ class MessageRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function getFullConversation(int $conversationId)
+    {
+        return $this->createQueryBuilder('m')
+            ->select('m.id AS message_id, m.content, m.sentAt, u.id AS user_id, u.username')
+            ->join('m.sender', 'u')
+            ->where('m.conversation = :conversationId')
+            ->setParameter('conversationId', $conversationId)
+            ->orderBy('m.sentAt', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 }

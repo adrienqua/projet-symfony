@@ -37,7 +37,7 @@ class OfferController extends AbstractController
         $form = $this->createFormBuilder()
             ->add('tasks', ChoiceType::class, [
                 'choices' => $offer->getTasks(),
-                'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100'],
+                'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800'],
                 'label' => 'Activités proposées',
                 'label_attr' => ['class' => 'block  font-medium mb-2'],
                 'choice_label' => function($task) {

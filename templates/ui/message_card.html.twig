@@ -1,0 +1,9 @@
+<div class="gap-4 mb-4 rounded-3xl shadow-sm w-2/3 p-4 {{ app.user.username == message.sender.username ? 'bg-fuchsia-300  ml-auto' : 'bg-white dark:bg-gray-700 mr-auto' }}">
+	<p class="font-semibold {{ app.user.username == message.sender.username ? 'text-fuchsia-900' : ''  }}">De :
+		{{ message.sender.username }}</p>
+	<div class=" {{ app.user.username == message.sender.username ? 'text-fuchsia-800' : 'text-gray-500 dark:text-gray-300'  }}">
+		<p class="text-xs  mb-2">Envoyé le
+			{{ message.sentAt | date('d/m/Y à H:i', 'Europe/Paris') }}</p>
+		<p class="text-sm ">{{ message.content }}</p>
+	</div>
+</div>

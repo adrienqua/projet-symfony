@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-	<article class="container mx-auto max-w-6xl">
+	<article class="container mx-auto max-w-6xl px-4">
 
 		<div class="flex flex-col md:flex-row gap-12 rounded-3xl shadow-md bg-white p-8 mb-8 dark:bg-gray-700 ">
 			<div class="w-full md:w-3/5">
@@ -14,17 +14,14 @@
 			<div class="w-full md:w-2/5">
 				<h1 class="text-3xl font-bold mb-2">{{offer.title}}</h1>
 
-				<p class="font-semibold">{{offer.description}}</p>
-				<p class="font-normal text-fuchsia-400 dark:text-fuchsia-200 mt-2 mb-6">{{offer.price}}
-					€</p>
+				<p class="font-semibold mb-12">{{offer.description}}</p>
+				{# 				<p class="font-normal text-fuchsia-400 dark:text-fuchsia-200 mt-2 mb-6">{{offer.price}}
+																													€</p> #}
 
 				{{ form_start(taskForm) }}
 				{{ form_widget(taskForm) }}
 				{{ form_end(taskForm) }}
 
-				{# <a href="{{path('app_stripe')}}" id="pay-button" class="w-full py-2 px-4 border transition-all duration-300 border-fuchsia-400 text-fuchsia-400 hover:text-gray-800 font-medium rounded-xl hover:bg-fuchsia-300 focus:ring-2 focus:ring-fuchsia-200 focus:ring-offset-2 dark:border-fuchsia-200 dark:text-fuchsia-200 dark:hover:bg-fuchsia-300  dark:focus:ring-fuchsia-100 dark:hover:text-gray-800">
-													Acheter ce service
-												</a> #}
 			</div>
 
 		</div>
@@ -34,11 +31,7 @@
 
 			<div class="flex flex-col  ">
 				{% for review in offer.reviews %}
-					<div class="gap-4 rounded-3xl shadow-md bg-white p-8 mb-8 dark:bg-gray-700">
-						<p class="font-bold">{{review.author.username}}</p>
-						<p class="text-sm text-gray-500">{{review.createdAt|date('d/m/Y H:i')}}</p>
-						<p class="font-normal mt-2">{{review.comment}}</p>
-					</div>
+					{% include 'ui/review_card.html.twig' %}
 				{% endfor %}
 			</div>
 

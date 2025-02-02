@@ -21,24 +21,24 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', null, [
             'label' => 'Email',
-            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100'],
+            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800'],
             ])
             ->add('username', null, [
             'label' => 'Nom d\'utilisateur',
-            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100'],
+            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800'],
             ])
             ->add('firstName', null, [
             'label' => 'Prénom',
-            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100'],
+            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800'],
             ])
             ->add('lastName', null, [
             'label' => 'Nom de famille',
-            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100'],
+            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800'],
             ])
             ->add('birthDate', DateType::class, [
             'label' => 'Date de naissance',
             'widget' => 'single_text',
-            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100'],
+            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800'],
             'constraints' => [
                 new NotBlank([
                 'message' => 'Veuillez entrer votre date de naissance',
@@ -50,7 +50,7 @@ class RegistrationFormType extends AbstractType
             'mapped' => false,
             'attr' => [
                 'autocomplete' => 'new-password',
-                'class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100',
+                'class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800',
             ],
             'constraints' => [
                 new NotBlank([
