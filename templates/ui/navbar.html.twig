@@ -1,8 +1,15 @@
 <!-- Navbar -->
 <nav class="bg-indigo-600 p-4 mb-20 dark:bg-gray-900">
-	<div class="container mx-auto flex justify-between items-center text-white">
-		<a href="{{ path('app_home') }}" class="text-2xl font-bold">DoItTogether</a>
-		<ul class="flex space-x-6">
+	<div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-white">
+		<div class="flex w-full md:w-min justify-between">
+			<a href="{{ path('app_home') }}" class="text-2xl font-bold mb-4 md:mb-0">DoItTogether</a>
+			<button class="mr-12 block md:hidden text-white focus:outline-none" id="navbar-toggle">
+				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+				</svg>
+			</button>
+		</div>
+		<ul class="hidden w-full md:w-max md:flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 mt-4 md:mt-0" id="navbar-menu">
 			<li>
 				<a href="{{ path('app_offers_list') }}" class="hover:text-gray-300">Annonces</a>
 			</li>
@@ -32,3 +39,10 @@
 		</ul>
 	</div>
 </nav>
+
+<script>
+	document.getElementById('navbar-toggle').addEventListener('click', function () {
+var menu = document.getElementById('navbar-menu');
+menu.classList.toggle('hidden');
+});
+</script>
