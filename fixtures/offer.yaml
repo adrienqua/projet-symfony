@@ -5,6 +5,7 @@ APP\Entity\Offer:
         price: 50
         category: "@category_social"
         renter: "@user_renter_<numberBetween(1, 25)>"
+        score: <numberBetween(1, 500)>
         tasks:
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_social_<numberBetween(1, 5)>"
@@ -17,6 +18,7 @@ APP\Entity\Offer:
         price: 40
         category: "@category_learning"
         renter: "@user_renter_<numberBetween(1, 25)>"
+        score: <numberBetween(1, 500)>
         tasks:
             - "@task_learning_<numberBetween(1, 5)>"
             - "@task_learning_<numberBetween(1, 5)>"
@@ -29,6 +31,7 @@ APP\Entity\Offer:
         price: 60
         category: "@category_entertainment"
         renter: "@user_renter_<numberBetween(1, 25)>"
+        score: <numberBetween(1, 500)>
         tasks:
             - "@task_entertainment_<numberBetween(1, 5)>"
             - "@task_entertainment_<numberBetween(1, 5)>"
@@ -41,6 +44,7 @@ APP\Entity\Offer:
         price: 70
         category: "@category_sport"
         renter: "@user_renter_<numberBetween(1, 25)>"
+        score: <numberBetween(1, 500)>
         tasks:
             - "@task_sport_<numberBetween(1, 5)>"
             - "@task_sport_<numberBetween(1, 5)>"
@@ -53,6 +57,7 @@ APP\Entity\Offer:
         price: 100
         category: "@category_travel"
         renter: "@user_renter_<numberBetween(1, 25)>"
+        score: <numberBetween(1, 500)>
         tasks:
             - "@task_travel_<numberBetween(1, 5)>"
             - "@task_travel_<numberBetween(1, 5)>"
@@ -65,6 +70,7 @@ APP\Entity\Offer:
         price: 30
         category: "@category_helping"
         renter: "@user_renter_<numberBetween(1, 25)>"
+        score: <numberBetween(1, 500)>
         tasks:
             - "@task_helping_<numberBetween(1, 5)>"
             - "@task_helping_<numberBetween(1, 5)>"
@@ -77,6 +83,7 @@ APP\Entity\Offer:
         price: 80
         category: "@category_social"
         renter: "@user_renter_<numberBetween(1, 25)>"
+        score: <numberBetween(1, 500)>
         tasks:
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_social_<numberBetween(1, 5)>"
@@ -89,6 +96,7 @@ APP\Entity\Offer:
         price: 50
         category: "@category_sport"
         renter: "@user_renter_<numberBetween(1, 25)>"
+        score: <numberBetween(1, 500)>
         tasks:
             - "@task_sport_<numberBetween(1, 5)>"
             - "@task_sport_<numberBetween(1, 5)>"
@@ -101,6 +109,7 @@ APP\Entity\Offer:
         price: 55
         category: "@category_learning"
         renter: "@user_renter_<numberBetween(1, 25)>"
+        score: <numberBetween(1, 500)>
         tasks:
             - "@task_learning_<numberBetween(1, 5)>"
             - "@task_learning_<numberBetween(1, 5)>"
@@ -113,6 +122,7 @@ APP\Entity\Offer:
         price: 65
         category: "@category_entertainment"
         renter: "@user_renter_<numberBetween(1, 25)>"
+        score: <numberBetween(1, 500)>
         tasks:
             - "@task_entertainment_<numberBetween(1, 5)>"
             - "@task_entertainment_<numberBetween(1, 5)>"

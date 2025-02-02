@@ -40,4 +40,14 @@ class OfferRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function popularOffers($count): array
+    {
+        return $this->createQueryBuilder('o')
+            ->orderBy('o.score', 'DESC')
+            ->setMaxResults($count)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

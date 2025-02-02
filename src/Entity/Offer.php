@@ -56,6 +56,9 @@ class Offer
     #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'offer')]
     private Collection $orders;
 
+    #[ORM\Column]
+    private ?int $score = null;
+
     public function __construct()
     {
         $this->setCreatedAt(new \DateTimeImmutable());
@@ -232,6 +235,18 @@ class Offer
                 $order->setOffer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getScore(): ?int
+    {
+        return $this->score;
+    }
+
+    public function setScore(int $score): static
+    {
+        $this->score = $score;
 
         return $this;
     }
