@@ -44,6 +44,7 @@
 					</a>
 				</div>
 			</div>
+
 			<div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg">
 				<div class="p-4">
 					<h5 class="text-lg font-semibold mb-2">Gérer les Utilisateurs</h5>
@@ -51,10 +52,23 @@
 						Ajouter, modifier ou supprimer des utilisateurs.
 					</p>
 					<a href="{{ path('app_user_index') }}" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
-						Voir les user
+						Voir les utilisateurs
 					</a>
 				</div>
 			</div>
+
+			<div class="card bg-white dark:bg-gray-800 shadow-lg rounded-lg">
+				<div class="p-4">
+					<h5 class="text-lg font-semibold mb-2">Gérer les Commandes</h5>
+					<p class="text-gray-600 dark:text-white mb-4">
+						Ajouter, modifier ou supprimer des commandes.
+					</p>
+					<a href="{{ path('app_admin_order_index') }}" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
+						Voir les commandes
+					</a>
+				</div>
+			</div>
+
 		</div>
 	</div>
 {% endblock %}

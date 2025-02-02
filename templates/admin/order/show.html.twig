@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de la commande{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Commande #{{ order.id }}</h1>
+    
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <table class="w-full border-collapse">
+            <tbody>
+                <tr class="border-b dark:border-gray-700">
+                    <th class="text-left py-2 px-4 font-medium text-gray-600 dark:text-white">Id</th>
+                    <td class="py-2 px-4 text-gray-800 dark:text-white">{{ order.id }}</td>
+                </tr>
+                <tr class="border-b dark:border-gray-700">
+                    <th class="text-left py-2 px-4 font-medium text-gray-600 dark:text-white">Statut</th>
+                    <td class="py-2 px-4 text-gray-800 dark:text-white">{{ order.status.value }}</td>
+                </tr>
+                <tr>
+                    <th class="text-left py-2 px-4 font-medium text-gray-600 dark:text-white">Date de création</th>
+                    <td class="py-2 px-4 text-gray-800 dark:text-white">{{ order.createdAt ? order.createdAt|date('d/m/Y H:i:s') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-6 flex justify-between items-center">
+        <a href="{{ path('app_admin_order_index') }}" class="text-blue-600 dark:text-blue-400 hover:underline">← Retour aux commandes</a>
+        <div class="flex gap-4">
+            <a href="{{ path('app_admin_order_edit', {'id': order.id}) }}" class="btn bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Modifier</a>
+            {{ include('admin/order/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+{% endblock %}
