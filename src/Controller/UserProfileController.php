@@ -20,6 +20,8 @@ final class UserProfileController extends AbstractController
         $form = $this->createForm(UserProfileType::class, $user);
         $form->handleRequest($request);
 
+        $orders = $user->getOrders();
+
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
@@ -35,6 +37,7 @@ final class UserProfileController extends AbstractController
 
         return $this->render('user_profile/index.html.twig', [
             'form' => $form->createView(),
+            'orders' => $orders,
         ]);
     }
 }

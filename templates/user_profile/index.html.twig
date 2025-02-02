@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block content %}
-	<section class="container mx-auto py-12 max-w-xl">
+	<section class="container mx-auto mb-12 max-w-xl">
 		<h1 class="text-3xl font-bold text-center mb-8">Bonjour,
 			{{ app.user.username }}</h1><br>
 
@@ -57,14 +57,41 @@
 				{{ form_end(form) }}
 			</form>
 		</div>
+
+	</section>
+	<section class="container mx-auto mb-12 max-w-6xl">
 		<h2 class="text-2xl font-bold text-center mb-6">Commandes</h2>
-		<div
-			class="flex flex-col md:flex-row gap-12 rounded-3xl shadow-md bg-white p-8 mb-8 dark:bg-gray-700">{# 		{% for order in app.user.orders %}
-								<div class="gap-4 rounded-3xl shadow-md bg-white p-8 mb-8 dark:bg-gray-700">
-									<p class="font-bold">{{order.id}}</p>
-				
-								</div>
-							{% endfor %} #}
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			{% if app.user.orders is empty %}
+				<p class="text-center">Aucune commande disponible.</p>
+			{% else %}
+				{% for order in app.user.orders %}
+					<div class="gap-4 rounded-3xl shadow-md bg-white p-8 mb-8 dark:bg-gray-700">
+						<p class="font-bold">Commande #{{ order.id }}</p>
+						<p class="text-xs text-gray-500 mb-2">Passée le
+							{{ order.createdAt | date('d/m/Y') }}</p>
+						<p class="text-sm text-gray-500">Vendeur :
+							{{ order.offer.renter.username }}
+						</p>
+						<p class="text-sm text-gray-500">Service :
+							{{ order.task.title }}
+						</p>
+						<p class="text-sm text-gray-500">Total :
+							{{ order.payments[0].amount }}
+							€</p>
+						<p class="text-sm text-gray-500">Statut :
+							<span class="inline-block py-1 px-2  text-xs font-semibold text-white bg-{{ order.status.color }}-500   rounded-full">
+								{{ order.status.value }}
+							</span>
+						</p>
+						<div class="mt-6">
+							<a href="{{ path('app_logout') }}" id="pay-button" class="w-full text-sm py-2 px-3 border transition-all duration-300 border-gray-400 text-gray-400 hover:text-gray-800 font-medium rounded-2xl hover:bg-gray-300 focus:ring-2 focus:ring-gray-200 focus:ring-offset-2 dark:border-gray-200 dark:text-gray-200 dark:hover:bg-gray-300 dark:focus:ring-gray-100 dark:hover:text-gray-800">
+								Contactez le vendeur
+							</a>
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
 		</div>
 		<div class="text-center">
 			<a href="{{ path('app_logout') }}" id="pay-button" class="w-full py-2 px-4 border transition-all duration-300 border-fuchsia-400 text-fuchsia-400 hover:text-gray-800 font-medium rounded-2xl hover:bg-fuchsia-300 focus:ring-2 focus:ring-fuchsia-200 focus:ring-offset-2 dark:border-fuchsia-200 dark:text-fuchsia-200 dark:hover:bg-fuchsia-300 dark:focus:ring-fuchsia-100 dark:hover:text-gray-800">
