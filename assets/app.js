@@ -7,7 +7,6 @@ import './bootstrap.js';
  */
 import './styles/app.css';
 
-// Fichier JS pour les favoris
 import './js/favorite.js';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

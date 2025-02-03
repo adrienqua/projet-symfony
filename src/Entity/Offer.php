@@ -207,7 +207,6 @@ class Offer
     public function removeReview(Review $review): static
     {
         if ($this->reviews->removeElement($review)) {
-            // set the owning side to null (unless already changed)
             if ($review->getOffer() === $this) {
                 $review->setOffer(null);
             }
@@ -237,7 +236,6 @@ class Offer
     public function removeOrder(Order $order): static
     {
         if ($this->orders->removeElement($order)) {
-            // set the owning side to null (unless already changed)
             if ($order->getOffer() === $this) {
                 $order->setOffer(null);
             }
