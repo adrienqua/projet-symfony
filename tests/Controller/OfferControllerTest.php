@@ -12,6 +12,18 @@ class OfferControllerTest extends WebTestCase
         $client = static::createClient();
         $crawler = $client->request('GET', '/annonces');
 
-        $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $this->assertGreaterThan(
+            0,
+            $crawler->filter('h1')->count(),
+            'La page doit avoir une balise h1.'
+        );
+
+        $this->assertStringContainsString(
+            'Toutes les annonces', 
+            $crawler->filter('h1')->text(),
+            'La balise h1 doit afficher "Toutes les annonces".'
+        );
+
+        $this->assertResponseIsSuccessful();
     }
 }
