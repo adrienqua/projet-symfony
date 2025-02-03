@@ -14,12 +14,12 @@
 		<link
 		href="{{ asset('css/app.css') }}" rel="stylesheet">
 		{#         <link
-																																	href="./assets/styles/app.css" rel="stylesheet"> #}
+																																											href="./assets/styles/app.css" rel="stylesheet"> #}
 		<link
 		href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 	{# 			{% block stylesheets %}
-																																									{{ encore_entry_link_tags('app') }}
-																																								{% endblock %} #}
+																																														{{ encore_entry_link_tags('app') }}
+																																													{% endblock %} #}
 	</head>
 	<body class="bg-slate-100 text-gray-900 dark:bg-gray-800 dark:text-white font-inter flex flex-col min-h-screen">
 		{% include 'ui/navbar.html.twig' %}
@@ -59,37 +59,34 @@ themeToggleButton.innerHTML = '☀️';
 });
 
 // A deplacer après dans favorite.js
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.favorite-btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            const taskId = this.dataset.taskId;
-            const icon = this.querySelector('span');
+document.addEventListener('DOMContentLoaded', function () {
+document.querySelectorAll('.favorite-btn').forEach(button => {
+button.addEventListener('click', function (e) {
+e.preventDefault();
+const offerId = this.dataset.offerId;
+const icon = this.querySelector('span');
 
-            fetch(`/task/${taskId}/toggle-favorite`, {
-                method: 'POST',
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-					console.log("Data : ", data);
-                    if (data.isFavorite) {
-                        icon.classList.remove('text-gray-400');
-                        icon.classList.add('text-red-500');
-                        this.dataset.isFavorite = 'true';
-                    } else {
-                        icon.classList.remove('text-red-500');
-                        icon.classList.add('text-gray-400');
-                        this.dataset.isFavorite = 'false';
-                    }
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    });
+fetch(`/annonces/${offerId}/favorite`, {
+method: 'POST',
+headers: {
+'X-Requested-With': 'XMLHttpRequest'
+}
+}).then(response => response.json()).then(data => {
+if (data.success) {
+console.log("Data : ", data);
+if (data.isFavorite) {
+icon.classList.remove('text-gray-400');
+icon.classList.add('text-red-500 fill-red-500');
+this.dataset.isFavorite = 'true';
+} else {
+icon.classList.remove('text-red-500 fill-red-500');
+icon.classList.add('text-gray-400');
+this.dataset.isFavorite = 'false';
+}
+}
+}).catch(error => console.error('Error:', error));
+});
+});
 });
 		</script>
 		{% block scripts %}{% endblock %}

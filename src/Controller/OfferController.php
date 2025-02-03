@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Offer;
+use App\Entity\User;
 use App\Form\OfferType;
 use App\Repository\OfferRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class OfferController extends AbstractController
 {   
@@ -66,6 +69,30 @@ class OfferController extends AbstractController
         return $this->render('offer/offer_details.html.twig', [
             'offer' => $offer,
             'taskForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/annonces/{id}/favorite', name: 'app_offer_toggle_favorite', methods: ['POST'])]
+    public function toggleFavorite(
+        Offer $task,
+        UserRepository $userRepository
+    ): JsonResponse
+    {
+        $currentUser = $this->getUser();
+        if (!$currentUser || !$currentUser instanceof User) {
+            return new JsonResponse(['error' => 'User must be logged in'], 403);
+        }
+        
+         $user = $userRepository->findCompleteUser($currentUser->getId());
+        if (!$user) {
+            return new JsonResponse(['error' => 'User not found'], 404);
+        }
+ 
+       $isFavorite = $userRepository->toggleFavoriteTask($user, $task);
+ 
+        return new JsonResponse([
+            'success' => true,
+            'isFavorite' => $isFavorite
         ]);
     }
 }

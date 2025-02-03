@@ -65,12 +65,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'reviewedUser')]
     private Collection $reviews;
 
-    /**
-     * @var Collection<int, Task>
-     */
-    #[ORM\ManyToMany(targetEntity: Task::class, mappedBy: 'users')]
-    private Collection $favoriteTasks;
-
     #[ORM\Column]
     private bool $isVerified = false;
 
@@ -92,15 +86,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Conversation::class, mappedBy: 'users')]
     private Collection $conversations;
 
+    /**
+     * @var Collection<int, Offer>
+     */
+    #[ORM\ManyToMany(targetEntity: Offer::class, inversedBy: 'users')]
+    private Collection $favoriteOffers;
+
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];
         $this->notifications = new ArrayCollection();
         $this->reviews = new ArrayCollection();
-        $this->favoriteTasks = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->messages = new ArrayCollection();
         $this->conversations = new ArrayCollection();
+        $this->favoriteOffers = new ArrayCollection();
     }
 
     public function getId(): int
@@ -290,33 +290,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Task>
-     */
-    public function getFavoriteTasks(): Collection
-    {
-        return $this->favoriteTasks;
-    }
-
-    public function addFavoriteTask(Task $favoriteTask): static
-    {
-        if (!$this->favoriteTasks->contains($favoriteTask)) {
-            $this->favoriteTasks->add($favoriteTask);
-            $favoriteTask->addUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFavoriteTask(Task $favoriteTask): static
-    {
-        if ($this->favoriteTasks->removeElement($favoriteTask)) {
-            $favoriteTask->removeUser($this);
-        }
-
-        return $this;
-    }
-
     public function isVerified(): bool
     {
         return $this->isVerified;
@@ -412,6 +385,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->conversations->removeElement($conversation)) {
             $conversation->removeUser($this);
         }
+
+        return $this;
+    }
+
+        /**
+     * @return Collection<int, Offer>
+     */
+    public function getFavoriteOffers(): Collection
+    {
+        return $this->favoriteOffers;
+    }
+
+    public function addFavoriteOffer(Offer $favoriteOffer): static
+    {
+        if (!$this->favoriteOffers->contains($favoriteOffer)) {
+            $this->favoriteOffers->add($favoriteOffer);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteOffer(Offer $favoriteOffer): static
+    {
+        $this->favoriteOffers->removeElement($favoriteOffer);
 
         return $this;
     }

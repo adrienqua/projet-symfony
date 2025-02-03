@@ -32,12 +32,6 @@ class Task
     private ?bool $isAdultContent = null;
 
     /**
-     * @var Collection<int, User>
-     */
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'favoriteTasks')]
-    private Collection $users;
-
-    /**
      * @var Collection<int, Offer>
      */
     #[ORM\ManyToMany(targetEntity: Offer::class, inversedBy: 'tasks')]
@@ -49,7 +43,6 @@ class Task
     public function __construct()
     {
         $this->setCreatedAt(new \DateTimeImmutable());
-        $this->users = new ArrayCollection();
         $this->offers = new ArrayCollection();
     }
 
@@ -114,30 +107,6 @@ class Task
     public function setIsAdultContent(bool $isAdultContent): self
     {
         $this->isAdultContent = $isAdultContent;
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): static
-    {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): static
-    {
-        $this->users->removeElement($user);
-
         return $this;
     }
 

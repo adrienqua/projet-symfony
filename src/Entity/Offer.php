@@ -59,6 +59,12 @@ class Offer
     #[ORM\Column]
     private ?int $score = null;
 
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoriteOffers')]
+    private Collection $users;
+
     public function __construct()
     {
         $this->setCreatedAt(new \DateTimeImmutable());
@@ -66,6 +72,7 @@ class Offer
         $this->tasks = new ArrayCollection();
         $this->reviews = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): int
@@ -247,6 +254,33 @@ class Offer
     public function setScore(int $score): static
     {
         $this->score = $score;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addFavoriteOffer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeFavoriteOffer($this);
+        }
 
         return $this;
     }

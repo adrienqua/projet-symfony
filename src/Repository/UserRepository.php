@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Offer;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -23,22 +24,22 @@ class UserRepository extends ServiceEntityRepository
     public function findCompleteUser(int $userId): ?User
     {
         return $this->createQueryBuilder('u')
-            ->leftJoin('u.favoriteTasks', 'ft')
-            ->addSelect('ft')
+            ->leftJoin('u.favoriteOffers', 'fo')
+            ->addSelect('fo')
             ->where('u.id = :userId')
             ->setParameter('userId', $userId)
             ->getQuery()
             ->getOneOrNullResult();
     }
 
-    public function toggleFavoriteTask(User $user, Task $task): bool
+    public function toggleFavoriteTask(User $user, Offer $offer): bool
     {
-        if ($user->getFavoriteTasks()->contains($task)) {
-            $user->removeFavoriteTask($task);
+        if ($user->getFavoriteOffers()->contains($offer)) {
+            $user->removeFavoriteOffer($offer);
             $isFavorite = false;
         } else {
             $isFavorite = true;
-            $user->addFavoriteTask($task);
+            $user->addFavoriteOffer($offer);
         }
 
         $this->entityManager->persist($user);
