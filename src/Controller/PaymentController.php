@@ -98,26 +98,10 @@ class PaymentController extends AbstractController
         $payment->setOrder($order);
         $entityManager->persist($payment);
         
-
-        //$order->setStripeSessionId($checkout_session->id);
         $entityManager->flush();
         
         
         return $this->redirect($checkout_session->url);
 
     }
-/*     #[Route('/paiement', name: 'app_stripe')]
-    public function createPaymentIntent(Request $request): JsonResponse
-    {
-        $data = json_decode($request->getContent(), true);
-        $amount = $data['amount'] ?? 5000;
-
-        if ($amount <= 0) {
-            return new JsonResponse(['error' => 'Invalid amount'], 400);
-        }
-
-        $paymentIntent = $this->stripeService->createPaymentIntent($amount);
-
-        return new JsonResponse($paymentIntent);
-    } */
 }
