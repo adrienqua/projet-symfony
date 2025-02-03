@@ -1,7 +1,7 @@
-# Use PHP 8.2 FPM (FastCGI Process Manager)
-FROM php:8.2-fpm
+# Use PHP 8.2 CLI
+FROM php:8.2-cli
 
-# Install necessary system dependencies and PHP extensions
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
@@ -9,29 +9,23 @@ RUN apt-get update && apt-get install -y \
     git \
     && docker-php-ext-install pdo pdo_mysql zip
 
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /var/www
 
-# Copy Symfony project files into the container
+# Copy Symfony project files
 COPY . .
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Set correct file permissions
+# Set permissions
 RUN chown -R www-data:www-data /var/www && chmod -R 775 /var/www
 
-# Increase PHP memory limit to avoid memory errors
-RUN echo "memory_limit=512M" > /usr/local/etc/php/conf.d/memory-limit.ini
-
-# Clear Composer cache before installing dependencies
-RUN composer clear-cache
-
-# Install dependencies safely
+# Install dependencies
 RUN composer install --no-interaction --no-progress --optimize-autoloader
 
-# Expose the necessary port (Vercel listens on port 8080)
+# Expose Vercel's default port (8080)
 EXPOSE 8080
 
-# Start PHP-FPM to handle requests
-CMD ["php-fpm"]
+# Run PHP's built-in web server
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]
