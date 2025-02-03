@@ -1,16 +1,4 @@
 <div class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-700 transition-all duration-300 hover:scale-105">
-    {% if app.user %}
-        <button 
-            class="favorite-btn float-right text-2xl"
-            data-task-id="{{ offer.id }}"
-            data-is-favorite="{{ app.user.favoriteTasks.contains(offer) ? 'true' : 'false' }}"
-        >
-            <span class="{{ app.user.favoriteTasks.contains(offer) ? 'text-red-500' : 'text-gray-400' }}">
-                ♥
-            </span>
-        </button>
-    {% endif %}
-    
     <a href={{path('app_offer_details', {'id': offer.id} )}}>
         <img src="https://placehold.co/600x400/png" alt="" class="w-full object-cover rounded-lg">
         <h2 class="text-lg font-semibold dark:text-white mt-2">{{ offer.title }}</h2>
@@ -18,6 +6,17 @@
     </a>
     <ul class="mt-4 flex flex-wrap gap-2">
         {% for task in offer.tasks %}
+            {% if app.user %}
+                <button 
+                    class="favorite-btn float-right text-2xl"
+                    data-task-id="{{ task.id }}"
+                    data-is-favorite="{{ app.user.favoriteTasks.contains(task) ? 'true' : 'false' }}"
+                >
+                    <span class="{{ app.user.favoriteTasks.contains(task) ? 'text-red-500' : 'text-gray-400' }}">
+                        ♥
+                    </span>
+                </button>
+            {% endif %}
             <li class="text-fuchsia-900 bg-fuchsia-200 hover:bg-fuchsia-300 dark:bg-fuchsia-200 py-1 px-2 rounded-2xl text-xs transition-all duration-300">
                 <a href="{{ path('app_category_details', {'id': task.id} ) }}">{{ task.title }}</a>
             </li>
