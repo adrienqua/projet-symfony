@@ -87,7 +87,6 @@ class Category
     public function removeOffer(Offer $offer): static
     {
         if ($this->offers->removeElement($offer)) {
-            // set the owning side to null (unless already changed)
             if ($offer->getCategory() === $this) {
                 $offer->setCategory(null);
             }
@@ -117,7 +116,6 @@ class Category
     public function removeTask(Task $task): static
     {
         if ($this->tasks->removeElement($task)) {
-            // set the owning side to null (unless already changed)
             if ($task->getCategory() === $this) {
                 $task->setCategory(null);
             }

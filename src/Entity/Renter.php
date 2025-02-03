@@ -42,7 +42,6 @@ class Renter extends User
     public function removeOffer(Offer $offer): static
     {
         if ($this->offers->removeElement($offer)) {
-            // set the owning side to null (unless already changed)
             if ($offer->getRenter() === $this) {
                 $offer->setRenter(null);
             }

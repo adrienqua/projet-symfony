@@ -63,10 +63,6 @@ class RegistrationFormType extends AbstractType
                 ]),
             ],
             ])
-/*             ->add('discr', null, [
-            'data' => 'client',
-            'attr' => ['style' => 'display:none;'],
-            ]) */
         ;
     }
 
