@@ -4,21 +4,26 @@
         <h2 class="text-lg font-semibold dark:text-white mt-2">{{ offer.title }}</h2>
         <p class="text-gray-700 dark:text-gray-300">{{ offer.description }}</p>
     </a>
-    <ul class="mt-4 flex flex-wrap gap-2">
+    <ul class="mt-4 space-y-2">
         {% for task in offer.tasks %}
-            {% if app.user %}
-                <button 
-                    class="favorite-btn float-right text-2xl"
-                    data-task-id="{{ task.id }}"
-                    data-is-favorite="{{ app.user.favoriteTasks.contains(task) ? 'true' : 'false' }}"
+            <li class="flex items-center gap-4">
+                {% if app.user %}
+                    <button 
+                        class="favorite-btn text-2xl"
+                        data-task-id="{{ task.id }}"
+                        data-is-favorite="{{ app.user.favoriteTasks.contains(task) ? 'true' : 'false' }}"
+                    >
+                        <span class="{{ app.user.favoriteTasks.contains(task) ? 'text-red-500' : 'text-gray-400' }}">
+                            ♥
+                        </span>
+                    </button>
+                {% endif %}
+                <a 
+                    href="{{ path('app_category_details', {'id': task.id}) }}"
+                    class="text-fuchsia-900 bg-fuchsia-200 hover:bg-fuchsia-300 dark:bg-fuchsia-200 py-1 px-2 rounded-2xl text-xs transition-all duration-300"
                 >
-                    <span class="{{ app.user.favoriteTasks.contains(task) ? 'text-red-500' : 'text-gray-400' }}">
-                        ♥
-                    </span>
-                </button>
-            {% endif %}
-            <li class="text-fuchsia-900 bg-fuchsia-200 hover:bg-fuchsia-300 dark:bg-fuchsia-200 py-1 px-2 rounded-2xl text-xs transition-all duration-300">
-                <a href="{{ path('app_category_details', {'id': task.id} ) }}">{{ task.title }}</a>
+                    {{ task.title }}
+                </a>
             </li>
         {% endfor %}
     </ul>
