@@ -11,6 +11,8 @@ APP\Entity\Offer:
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_entertainment_<numberBetween(1, 5)>"
             - "@task_learning_<numberBetween(1, 5)>"
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
 
     offer_2:
         title: "Partage d'activités et de passions"
@@ -24,6 +26,8 @@ APP\Entity\Offer:
             - "@task_learning_<numberBetween(1, 5)>"
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_entertainment_<numberBetween(1, 5)>"
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
 
     offer_3:
         title: "Moments de loisirs partagés"
@@ -37,6 +41,8 @@ APP\Entity\Offer:
             - "@task_entertainment_<numberBetween(1, 5)>"
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_sport_<numberBetween(1, 5)>"
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
 
     offer_4:
         title: "Accompagnement pour le sport"
@@ -50,6 +56,8 @@ APP\Entity\Offer:
             - "@task_sport_<numberBetween(1, 5)>"
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_entertainment_<numberBetween(1, 5)>"
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
 
     offer_5:
         title: "Découvertes et voyages partagés"
@@ -63,6 +71,8 @@ APP\Entity\Offer:
             - "@task_travel_<numberBetween(1, 5)>"
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_entertainment_<numberBetween(1, 5)>"
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
 
     offer_6:
         title: "Aide et soutien quotidien"
@@ -76,6 +86,8 @@ APP\Entity\Offer:
             - "@task_helping_<numberBetween(1, 5)>"
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_sport_<numberBetween(1, 5)>"
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
 
     offer_7:
         title: "Expériences culturelles et sociales"
@@ -89,6 +101,8 @@ APP\Entity\Offer:
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_entertainment_<numberBetween(1, 5)>"
             - "@task_learning_<numberBetween(1, 5)>"
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
 
     offer_8:
         title: "Moments détente et relaxation"
@@ -102,6 +116,8 @@ APP\Entity\Offer:
             - "@task_sport_<numberBetween(1, 5)>"
             - "@task_helping_<numberBetween(1, 5)>"
             - "@task_entertainment_<numberBetween(1, 5)>"
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
 
     offer_9:
         title: "Activités créatives et éducatives"
@@ -115,6 +131,8 @@ APP\Entity\Offer:
             - "@task_learning_<numberBetween(1, 5)>"
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_entertainment_<numberBetween(1, 5)>"
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
 
     offer_10:
         title: "Divertissement varié à partager"
@@ -128,3 +146,5 @@ APP\Entity\Offer:
             - "@task_entertainment_<numberBetween(1, 5)>"
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_sport_<numberBetween(1, 5)>"
+        users:
+            - "@user_base_<numberBetween(1, 25)>"
