@@ -20,6 +20,18 @@
 	<body class="bg-slate-100 text-gray-900 dark:bg-gray-800 dark:text-white font-inter flex flex-col min-h-screen">
 		{% include 'ui/navbar.html.twig' %}
 
+		{% for label, messages in app.flashes %}
+			{% set message = messages|last %}
+			<div class="flash-{{ label }} rounded-lg p-4 mb-4 
+				{% if label == 'success' %}
+					bg-green-100 text-green-700 dark:bg-green-800 dark:text-green-200
+				{% elseif label == 'error' %}
+					bg-red-100 text-red-700 dark:bg-red-800 dark:text-red-200
+				{% endif %}">
+				{{ message }}
+			</div>
+		{% endfor %}
+
 		<main class="mb-auto"> {% block content %}{% endblock %}
 
 			<div class="fixed top-4 right-4 z-50">
