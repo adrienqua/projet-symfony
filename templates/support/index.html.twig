@@ -47,7 +47,6 @@ const requestTypeSelect = document.getElementById('support_request_requestType')
 const dynamicFieldsContainer = document.getElementById('dynamic-fields');
 
 requestTypeSelect.addEventListener('change', function () {
-console.log('Type sélectionné:', this.value); // Debug
 
 fetch('{{ path('app_support') }}', {
 method: 'POST',
@@ -59,7 +58,6 @@ body: new URLSearchParams(
 {'type': this.value}
 )
 }).then(response => response.text()).then(html => {
-console.log('HTML reçu:', html); // Debug
 dynamicFieldsContainer.innerHTML = html;
 }).catch(error => {
 console.error('Erreur:', error);
