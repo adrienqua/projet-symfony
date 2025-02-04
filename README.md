@@ -12,6 +12,8 @@ Projet Symfony
 - php bin/console doittogether:make:category
 - Permet de créer une Category et l'enregistrer en BDD <br><br>
 
-
 - php bin/console doittogether:delete:category
 - Permet de supprimer une Category de la BDD <br><br>
+
+- php bin/console doittogether:edit:category
+- Permet de modifier une Category de la BDD <br><br>
