@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Offer;
+use App\Entity\Review;
 use App\Entity\User;
+use App\Form\AddReviewType;
 use App\Form\OfferType;
 use App\Repository\OfferRepository;
 use App\Repository\UserRepository;
@@ -31,7 +33,7 @@ class OfferController extends AbstractController
     }
 
     #[Route('/annonces/{id}', name: 'app_offer_details', methods: ['GET', 'POST'])]
-    public function offerDetails(string $id, OfferRepository $offerRepository, Request $request): Response
+    public function offerDetails(string $id, OfferRepository $offerRepository, Request $request, EntityManagerInterface $em): Response
     {
         $offer = $offerRepository->find($id);
 
@@ -64,11 +66,25 @@ class OfferController extends AbstractController
             }
         }
 
+        $review = new Review();
+        $reviewForm = $this->createForm(AddReviewType::class, $review);
+        $reviewForm->handleRequest($request);
+
+        if ($reviewForm->isSubmitted() && $reviewForm->isValid()) {
+            $review->setOffer($offer);
+/*             $review->setRating($reviewForm->get('rating')->getData());
+ */            $review->setAuthor($this->getUser());
+            $em->persist($review);
+            $em->flush();
+
+            return $this->redirectToRoute('app_offer_details', ['id' => $id]);
+        }
     
 
         return $this->render('offer/offer_details.html.twig', [
             'offer' => $offer,
             'taskForm' => $form->createView(),
+            'reviewForm' => $reviewForm->createView()
         ]);
     }
 

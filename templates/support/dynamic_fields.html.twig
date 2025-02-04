@@ -1,37 +1,37 @@
 {% if supportForm.technicalDetails is defined %}
-<div class="mb-4">
-    {{ form_label(supportForm.technicalDetails, null, { 'label_attr': { 'class': 'font-medium' } }) }}
-    {{ form_widget(supportForm.technicalDetails, { 'attr': { 
+	<div class="mb-4">
+		{{ form_label(supportForm.technicalDetails, null, { 'label_attr': { 'class': 'font-medium' } }) }}
+		{{ form_widget(supportForm.technicalDetails, { 'attr': { 
         'class': 'w-full p-2 border rounded-2xl dark:bg-gray-800 dark:text-white mb-4 bg-gray-100' 
     } }) }}
-    {{ form_errors(supportForm.technicalDetails) }}
-</div>
+		{{ form_errors(supportForm.technicalDetails) }}
+	</div>
 
-<div class="mb-4">
-    {{ form_label(supportForm.attachments, null, { 'label_attr': { 'class': 'font-medium' } }) }}
-    {{ form_widget(supportForm.attachments, { 'attr': { 
+	<div class="mb-4">
+		{{ form_label(supportForm.attachments, null, { 'label_attr': { 'class': 'font-medium' } }) }}
+		{{ form_widget(supportForm.attachments, { 'attr': { 
         'class': 'w-full p-2 border rounded-2xl dark:bg-gray-800 dark:text-white mb-4 bg-gray-100' 
     } }) }}
-    {{ form_errors(supportForm.attachments) }}
-</div>
+		{{ (supportForm.attachments) }}
+	</div>
 {% endif %}
 
 {% if supportForm.billingDetails is defined %}
-<div class="mb-4">
-    {{ form_label(supportForm.billingDetails, null, { 'label_attr': { 'class': 'font-medium' } }) }}
-    {{ form_widget(supportForm.billingDetails, { 'attr': { 
+	<div class="mb-4">
+		{{ form_label(supportForm.billingDetails, null, { 'label_attr': { 'class': 'font-medium' } }) }}
+		{{ form_widget(supportForm.billingDetails, { 'attr': { 
         'class': 'w-full p-2 border rounded-2xl dark:bg-gray-800 dark:text-white mb-4 bg-gray-100' 
     } }) }}
-    {{ form_errors(supportForm.billingDetails) }}
-</div>
+		{{ form_errors(supportForm.billingDetails) }}
+	</div>
 {% endif %}
 
 {% if supportForm.generalDetails is defined %}
-<div class="mb-4">
-    {{ form_label(supportForm.generalDetails, null, { 'label_attr': { 'class': 'font-medium' } }) }}
-    {{ form_widget(supportForm.generalDetails, { 'attr': { 
+	<div class="mb-4">
+		{{ form_label(supportForm.generalDetails, null, { 'label_attr': { 'class': 'font-medium' } }) }}
+		{{ form_widget(supportForm.generalDetails, { 'attr': { 
         'class': 'w-full p-2 border rounded-2xl dark:bg-gray-800 dark:text-white mb-4 bg-gray-100' 
     } }) }}
-    {{ form_errors(supportForm.generalDetails) }}
-</div>
+		{{ form_errors(supportForm.generalDetails) }}
+	</div>
 {% endif %}

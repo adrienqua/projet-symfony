@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 class Review
@@ -17,6 +18,8 @@ class Review
     private int $rating;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 5, minMessage: 'Le commentaire doit comporter au moins {{ limit }} caractères.')]
     private string $comment;
 
     #[ORM\Column(type: 'datetime_immutable')]
