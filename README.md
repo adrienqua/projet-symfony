@@ -17,3 +17,6 @@ Projet Symfony
 
 - php bin/console doittogether:edit:category
 - Permet de modifier une Category de la BDD <br><br>
+
+- php bin/console doittogether:export:categories
+- Permet d'exporter au format CSV les données de la table Category <br><br>
