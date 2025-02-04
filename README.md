@@ -20,3 +20,6 @@ Projet Symfony
 
 - php bin/console doittogether:export:categories
 - Permet d'exporter à la racine du projet, les données de la table Category au format CSV <br><br>
+
+- php bin/console doittogether:stats:category
+- Permet d'afficher des statistiques sur la table Category <br><br>
