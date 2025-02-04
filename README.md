@@ -8,3 +8,6 @@ Projet Symfony
 - Node.js et npm
 - Symfony CLI
 
+## Commandes personnalisées
+- php bin/console doittogether:make:category
+- Permet de créer une category et l'enregistrer en BDD
