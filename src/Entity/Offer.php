@@ -18,14 +18,18 @@ class Offer
     private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotNull(message: 'Le titre ne peut pas être nul')]
     #[Assert\Length(min: 5, minMessage: 'Le titre doit comporter au moins {{ limit }} caractères')]
     private string $title;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotNull(message: 'La description ne peut pas être nulle')]
     #[Assert\Length(min: 10, minMessage: 'La description doit comporter au moins {{ limit }} caractères')]
     private string $description;
 
     #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
+    #[Assert\NotNull(message: 'Le prix ne peut pas être nul')]
+    #[Assert\Positive(message: 'Le prix doit être supérieur à 0.')]
     private float $price;
 
     #[ORM\Column(type: 'datetime_immutable')]

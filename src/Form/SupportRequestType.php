@@ -26,14 +26,16 @@ public function buildForm(FormBuilderInterface $builder, array $options)
                 'Autre demande' => 'general'
             ],
             'placeholder' => false,
-            'required' => true
+            'required' => true,
+            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800']
         ])
         ->add('email', EmailType::class, [
             'label' => 'Votre email',
             'constraints' => [
                 new Assert\NotBlank(),
                 new Assert\Email()
-            ]
+            ],
+            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800']
         ]);
 
     $data = $builder->getData();
@@ -44,21 +46,25 @@ public function buildForm(FormBuilderInterface $builder, array $options)
             ->add('technicalDetails', TextareaType::class, [
                 'label' => 'Description technique',
                 'required' => true,
+                'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800']
             ])
             ->add('attachments', FileType::class, [
                 'label' => 'Pièces jointes',
                 'multiple' => true,
                 'required' => false,
+                'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800']
             ]);
     } elseif ($requestType === 'billing') {
         $builder->add('billingDetails', TextareaType::class, [
             'label' => 'Détails de la facturation',
             'required' => true,
+            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800']
         ]);
     } elseif ($requestType === 'general') {
         $builder->add('generalDetails', TextareaType::class, [
             'label' => 'Votre message',
             'required' => true,
+            'attr' => ['class' => 'form-input mt-1 block w-full rounded-lg p-2 mb-4 bg-gray-100 dark:bg-gray-800']
         ]);
     }
 }

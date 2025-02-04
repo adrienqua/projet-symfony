@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-#[Route('/offer')]
+#[Route('/admin/offer')]
 final class AdminOfferController extends AbstractController
 {   
     #[Route(name: 'app_offer_index', methods: ['GET'])]

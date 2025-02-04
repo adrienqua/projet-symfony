@@ -22,11 +22,11 @@ class OfferType extends AbstractType
             ->add('price', NumberType::class, [
                 'label' => 'Prix',
                 'scale' => 2,
-                'html5' => true,
                 'attr' => [
                     'min' => 0,
                     'step' => 0.01,
                 ],
+                'empty_data' => '0.00'
             ])
             ->add('createdAt', null, [
                 'widget' => 'single_text',

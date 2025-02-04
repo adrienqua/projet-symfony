@@ -1,70 +1,71 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-<div class="container mx-auto p-6">
-    <form method="post" id="support-form" class="max-w-lg mx-auto">
-        {{ form_start(supportForm) }}
-        
-        <div class="mb-4">
-            {{ form_label(supportForm.requestType) }}
-            {{ form_widget(supportForm.requestType, {
+	<div class="container mx-auto p-6 ">
+		<div class="text-center">
+			<h1 class=" text-3xl font-bold mb-8">Support</h1>
+		</div>
+		<form method="post" id="support-form" class="max-w-lg mx-auto gap-12 rounded-3xl shadow-md bg-white p-8 mb-8 dark:bg-gray-700">
+
+			{{ form_start(supportForm) }}
+
+			<div class="mb-4">
+				{{ form_label(supportForm.requestType) }}
+				{{ form_widget(supportForm.requestType, {
                 'attr': {
                     'class': 'w-full p-2 border rounded-2xl dark:bg-gray-800 dark:text-white bg-gray-100',
                     'id': 'support_request_type'
                 }
             }) }}
-        </div>
+			</div>
 
-        <div class="mb-4">
-            {{ form_label(supportForm.email) }}
-            {{ form_widget(supportForm.email, {
+			<div class="mb-4">
+				{{ form_label(supportForm.email) }}
+				{{ form_widget(supportForm.email, {
                 'attr': {
                     'class': 'w-full p-2 border rounded-2xl dark:bg-gray-800 dark:text-white bg-gray-100'
                 }
             }) }}
-        </div>
+			</div>
 
-        <div id="dynamic-fields"></div>
+			<div id="dynamic-fields"></div>
 
-        <div class="text-center">
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
-                Envoyer
-            </button>
-        </div>
-        
-        {{ form_end(supportForm) }}
-    </form>
-</div>
+			<div class="text-center">
+				<button type="submit" class="mt-2 py-2 px-4 border transition-all duration-300 border-fuchsia-400 text-fuchsia-400 hover:text-gray-800 font-medium rounded-xl hover:bg-fuchsia-300 focus:ring-2 focus:ring-fuchsia-200 focus:ring-offset-2 dark:border-fuchsia-200 dark:text-fuchsia-200 dark:hover:bg-fuchsia-300 dark:focus:ring-fuchsia-100 dark:hover:text-gray-800">
+					Envoyer
+				</button>
+			</div>
 
-{% block javascripts %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const requestTypeSelect = document.getElementById('support_request_requestType');
-    const dynamicFieldsContainer = document.getElementById('dynamic-fields');
+			{{ form_end(supportForm) }}
+		</form>
+	</div>
 
-    requestTypeSelect.addEventListener('change', function() {
-        console.log('Type sélectionné:', this.value);  // Debug
+	{% block javascripts %}
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+const requestTypeSelect = document.getElementById('support_request_requestType');
+const dynamicFieldsContainer = document.getElementById('dynamic-fields');
 
-        fetch('{{ path('app_support') }}', {
-            method: 'POST',
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: new URLSearchParams({
-                'type': this.value
-            })
-        })
-        .then(response => response.text())
-        .then(html => {
-            console.log('HTML reçu:', html);  // Debug
-            dynamicFieldsContainer.innerHTML = html;
-        })
-        .catch(error => {
-            console.error('Erreur:', error);
-        });
-    });
+requestTypeSelect.addEventListener('change', function () {
+console.log('Type sélectionné:', this.value); // Debug
+
+fetch('{{ path('app_support') }}', {
+method: 'POST',
+headers: {
+'X-Requested-With': 'XMLHttpRequest',
+'Content-Type': 'application/x-www-form-urlencoded'
+},
+body: new URLSearchParams(
+{'type': this.value}
+)
+}).then(response => response.text()).then(html => {
+console.log('HTML reçu:', html); // Debug
+dynamicFieldsContainer.innerHTML = html;
+}).catch(error => {
+console.error('Erreur:', error);
 });
-</script>
-{% endblock %}
+});
+});
+		</script>
+	{% endblock %}
 {% endblock %}
