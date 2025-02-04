@@ -72,8 +72,8 @@ class OfferController extends AbstractController
 
         if ($reviewForm->isSubmitted() && $reviewForm->isValid()) {
             $review->setOffer($offer);
-/*             $review->setRating($reviewForm->get('rating')->getData());
- */            $review->setAuthor($this->getUser());
+            $review->setRating($reviewForm->get('rating')->getData());
+            $review->setAuthor($this->getUser());
             $em->persist($review);
             $em->flush();
 
