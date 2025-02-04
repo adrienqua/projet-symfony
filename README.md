@@ -10,4 +10,8 @@ Projet Symfony
 
 ## Commandes personnalisées
 - php bin/console doittogether:make:category
-- Permet de créer une category et l'enregistrer en BDD
+- Permet de créer une Category et l'enregistrer en BDD <br><br>
+
+
+- php bin/console doittogether:delete:category
+- Permet de supprimer une Category de la BDD <br><br>
