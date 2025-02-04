@@ -6,6 +6,8 @@ use App\Repository\OfferRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
 class Offer
@@ -16,9 +18,11 @@ class Offer
     private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length(min: 5, minMessage: 'Le titre doit comporter au moins {{ limit }} caractères')]
     private string $title;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\Length(min: 10, minMessage: 'La description doit comporter au moins {{ limit }} caractères')]
     private string $description;
 
     #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
@@ -56,8 +60,8 @@ class Offer
     #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'offer')]
     private Collection $orders;
 
-    #[ORM\Column]
-    private ?int $score = null;
+    #[ORM\Column(options: ["default" => 0])]
+    private int $score = 0;
 
     /**
      * @var Collection<int, User>

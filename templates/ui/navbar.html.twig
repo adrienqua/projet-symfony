@@ -16,25 +16,28 @@
 				<a href="{{ path('app_categories_list') }}" class="hover:text-gray-300">Services</a>
 			</li>
 			{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
-				<li>
+				<li class="flex gap-1 items-center">
 					<a href={{path("app_user_profile")}} class="hover:text-gray-300">
 						Mon profil
 						{{ app.user.username }}
 					</a>
-				</li>
-				<li>
-					<a href="{{ path('app_support') }}" class="hover:text-gray-300">Support</a>
+					<a href="{{ path('app_logout') }}" class="hover:text-gray-300">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+						</svg>
+					</a>
 				</li>
 			{% endif %}
 			{% if is_granted('ROLE_ADMIN') %}
 				<li>
 					<a href="{{ path('admin_dashboard') }}" class="hover:text-gray-300">Admin</a>
 				</li>
+				<li>
+					<a href="{{ path('app_support') }}" class="hover:text-gray-300">Support</a>
+				</li>
 			{% endif %}
 			<li>
-				{% if app.user %}
-					<a href="{{ path('app_logout') }}" class="hover:text-gray-300">Se déconnecter</a>
-				{% else %}
+				{% if not app.user %}
 					<a href="{{ path('app_login') }}" class="hover:text-gray-300">Se connecter</a>
 				{% endif %}
 			</li>
