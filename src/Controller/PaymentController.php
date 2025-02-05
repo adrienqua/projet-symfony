@@ -76,8 +76,8 @@ class PaymentController extends AbstractController
                 $stripe_cart
             ],
             'mode' => 'payment',
-            'success_url' => $DOMAIN. 'commande/succes/{CHECKOUT_SESSION_ID}',
-            'cancel_url' => $DOMAIN. 'commande/echec/{CHECKOUT_SESSION_ID}',
+            'success_url' => $DOMAIN. '/commande/succes/{CHECKOUT_SESSION_ID}',
+            'cancel_url' => $DOMAIN. '/commande/echec/{CHECKOUT_SESSION_ID}',
         ]);
 
 
