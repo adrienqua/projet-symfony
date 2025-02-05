@@ -31,7 +31,11 @@
 				<div class="rounded-3xl shadow-md bg-white p-8 mb-8 dark:bg-gray-700">
 					{{ form_start(reviewForm) }}
 					{{ form_widget(reviewForm) }}
-					<button class="mt-2 py-2 px-4 border transition-all duration-300 border-fuchsia-400 text-fuchsia-400 hover:text-gray-800 font-medium rounded-xl hover:bg-fuchsia-300 focus:ring-2 focus:ring-fuchsia-200 focus:ring-offset-2 dark:border-fuchsia-200 dark:text-fuchsia-200 dark:hover:bg-fuchsia-300 dark:focus:ring-fuchsia-100 dark:hover:text-gray-800">{{ button_label|default('Evaluer') }}</button>
+					{% if app.user %}
+						<button class="mt-2 py-2 px-4 border transition-all duration-300 border-fuchsia-400 text-fuchsia-400 hover:text-gray-800 font-medium rounded-xl hover:bg-fuchsia-300 focus:ring-2 focus:ring-fuchsia-200 focus:ring-offset-2 dark:border-fuchsia-200 dark:text-fuchsia-200 dark:hover:bg-fuchsia-300 dark:focus:ring-fuchsia-100 dark:hover:text-gray-800">{{ button_label|default('Evaluer') }}</button>
+					{% else %}
+						<a href="{{path('app_login')}}" class="mt-2 py-2 px-4 border transition-all duration-300 border-fuchsia-400 text-fuchsia-400 hover:text-gray-800 font-medium rounded-xl hover:bg-fuchsia-300 focus:ring-2 focus:ring-fuchsia-200 focus:ring-offset-2 dark:border-fuchsia-200 dark:text-fuchsia-200 dark:hover:bg-fuchsia-300 dark:focus:ring-fuchsia-100 dark:hover:text-gray-800">{{ button_label|default('Evaluer') }}</a>
+					{% endif %}
 					{{ form_end(reviewForm) }}
 				</div>
 				<hr>
