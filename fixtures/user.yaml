@@ -27,7 +27,25 @@ App\Entity\Renter:
         birthDate: <(new DateTime("1997-02-25"))>
         roles: [ROLE_ADMIN]
 
+    user_admin3 (extends user_template):
+        email: "admin.@gmail.com"
+        username: "admin"
+        firstName: "Admin"
+        lastName: "ADMIN"
+        plainPassword: "admin1234"
+        birthDate: <(new DateTime("1999-12-31"))>
+        roles: [ROLE_ADMIN]
+
     user_renter_{1..25} (extends user_template):
 
 App\Entity\Client:
+    user_lambda (extends user_template):
+        email: "pekin.moyen@gmail.com"
+        username: "PekinMoyen"
+        firstName: "Pekin"
+        lastName: "MOYEN"
+        plainPassword: "pekin1234"
+        birthDate: <(new DateTime("2002-02-04"))>
+        roles: [ROLE_USER]
+
     user_base_{1..25} (extends user_template):

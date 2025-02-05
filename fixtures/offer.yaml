@@ -4,8 +4,8 @@ APP\Entity\Offer:
         description: "Proposez ou recherchez une compagnie pour des moments agréables et diversifiés."
         price: 50
         category: "@category_social"
-        renter: "@user_renter_<numberBetween(1, 25)>"
-        score: <numberBetween(1, 500)>
+        renter: "@user_admin3"
+        score: 669
         tasks:
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_social_<numberBetween(1, 5)>"
