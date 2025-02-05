@@ -6,7 +6,7 @@ framework:
     # Note that the session will be started ONLY if you read or write from it.
     session:
         cookie_secure: auto
-    crsf_protection:
+    csrf_protection:
         enabled: false
 
     #esi: true
