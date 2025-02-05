@@ -28,10 +28,10 @@ App\Entity\Renter:
         roles: [ROLE_ADMIN]
 
     user_admin3 (extends user_template):
-        email: "admin.@gmail.com"
+        email: "admin@gmail.com"
         username: "admin"
-        firstName: "Admin"
-        lastName: "ADMIN"
+        firstName: "Leader"
+        lastName: "SUPREME"
         plainPassword: "admin1234"
         birthDate: <(new DateTime("1999-12-31"))>
         roles: [ROLE_ADMIN]
