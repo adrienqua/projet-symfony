@@ -34,6 +34,10 @@ Le projet est hébergé sur [https://symfony-project-c6ab13ae4acd.herokuapp.com/
 -   lancer `php bin/console doctrine:database:create --env=test` et `php bin/console doctrine:schema:update --force --env=test` pour setup la base de données de test.
 -   lancer `php bin/phpunit` pour exécuter les test
 
+# CI / CD
+
+-   A chaque commit Push sur la branche main, les tests unitaires / fonctionnels sont exécutés. Si les tests sont valides, les modifications sont automatiquement déployées sur Heroku.
+
 ## Commandes personnalisées
 
 -   php bin/console doittogether:make:category
