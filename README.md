@@ -29,6 +29,11 @@ Le projet est hébergé sur [https://symfony-project-c6ab13ae4acd.herokuapp.com/
     -   admin@gmail.com admin1234 for ROLE_ADMIN
     -   pekin.moyen@gmail.com pekin1234 for ROLE_USER
 
+# Tests Unitaires / fonctionnels
+
+-   lancer `php bin/console doctrine:database:create --env=test` et `php bin/console doctrine:schema:update --force --env=test` pour setup la base de données de test.
+-   lancer `php bin/phpunit` pour exécuter les test
+
 ## Commandes personnalisées
 
 -   php bin/console doittogether:make:category

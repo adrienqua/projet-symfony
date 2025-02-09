@@ -84,7 +84,8 @@ class OfferController extends AbstractController
         return $this->render('offer/offer_details.html.twig', [
             'offer' => $offer,
             'taskForm' => $form->createView(),
-            'reviewForm' => $reviewForm->createView()
+            'reviewForm' => $reviewForm->createView(),
+            'review' => $review
         ]);
     }
 

@@ -19,7 +19,7 @@ class AddReviewType extends AbstractType
             ->add('comment', null, [
             'label' => 'Ajouter une évaluation',
             'label_attr' => ['class' => 'text-xl font-bold mb-2'],
-            'attr' => ['class' => 'form-input mt-1 block w-full rounded-3xl p-8 mt-4 mb-4 bg-gray-100 dark:bg-gray-700 min-h-24', 'rows' => 5],
+            'attr' => ['class' => 'form-input mt-1 block w-full rounded-3xl p-8 mt-4 mb-4 bg-gray-100 dark:bg-gray-800 min-h-24', 'rows' => 5],
             ])
             ->add('rating', ChoiceType::class, [
             'label' => false,
@@ -30,7 +30,7 @@ class AddReviewType extends AbstractType
                 '2 Étoiles' => 2,
                 '1 Étoile' => 1,
             ],
-            'attr' => ['class' => 'form-input mt-1 block w-full rounded-3xl px-8 py-4 mb-4 bg-gray-100 dark:bg-gray-700'],
+            'attr' => ['class' => 'form-input mt-1 block w-full rounded-3xl px-8 py-4 mb-4 bg-gray-100 dark:bg-gray-800'],
             ])
         ;
     }

@@ -1,1 +1,1 @@
-{"version":1,"defects":{"App\\Tests\\Controller\\OfferControllerTest::testOfferListPageLoads":3},"times":{"App\\Tests\\Controller\\OfferControllerTest::testOfferListPageLoads":8.015,"App\\Tests\\Entity\\OfferTest::testOfferSettersAndGetters":0.001}}
+{"version":1,"defects":{"App\\Tests\\Controller\\OfferControllerTest::testOfferListPageLoads":3},"times":{"App\\Tests\\Controller\\OfferControllerTest::testOfferListPageLoads":2.258,"App\\Tests\\Entity\\OfferTest::testOfferSettersAndGetters":0}}
