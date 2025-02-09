@@ -2,7 +2,7 @@
 
 DoItTogether est une application qui connecte les personnes souhaitant partager des activités avec d’autres, plutôt que de les faire seules. Les utilisateurs peuvent publier ou découvrir des annonces proposant diverses expériences et réserver du temps avec quelqu'un pour profiter ensemble d’un moment convivial, enrichissant ou divertissant.
 
-# Hébergement
+## Hébergement
 
 Le projet est hébergé sur [https://symfony-project-c6ab13ae4acd.herokuapp.com/](https://symfony-project-c6ab13ae4acd.herokuapp.com/).
 
@@ -14,7 +14,7 @@ Le projet est hébergé sur [https://symfony-project-c6ab13ae4acd.herokuapp.com/
 -   Symfony CLI
 -   Docker pour la réception d'emails avec Mailhog en environnement de développement.
 
-# Lancer le projet
+## Lancer le projet
 
 -   lancer `composer install` puis `composer update`
 -   créer la base de données MySQL `db_projet_symfony` ou utiliser votre propre base de données
@@ -23,18 +23,18 @@ Le projet est hébergé sur [https://symfony-project-c6ab13ae4acd.herokuapp.com/
 -   lancer `symfony serve`
 -   lancer `docker compose up -d ` (pour Mailhog)
 
-# Roles test
+## Roles test
 
 -   Utilisateurs générés avec les Fixtures
     -   admin@gmail.com admin1234 for ROLE_ADMIN
     -   pekin.moyen@gmail.com pekin1234 for ROLE_USER
 
-# Tests Unitaires / fonctionnels
+## Tests Unitaires / fonctionnels
 
 -   lancer `php bin/console doctrine:database:create --env=test` et `php bin/console doctrine:schema:update --force --env=test` pour setup la base de données de test.
 -   lancer `php bin/phpunit` pour exécuter les test
 
-# CI / CD
+## CI / CD
 
 -   A chaque commit Push sur la branche main, les tests unitaires / fonctionnels sont exécutés. Si les tests sont valides, les modifications sont automatiquement déployées sur Heroku.
 
