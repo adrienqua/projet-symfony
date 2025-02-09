@@ -12,7 +12,7 @@
 		{{ form_widget(supportForm.attachments, { 'attr': { 
         'class': 'w-full p-2 border rounded-2xl dark:bg-gray-800 dark:text-white mb-4 bg-gray-100' 
     } }) }}
-		{{ (supportForm.attachments) }}
+		{{ form_errors(supportForm.attachments) }}
 	</div>
 {% endif %}
 

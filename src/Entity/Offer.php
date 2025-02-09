@@ -73,6 +73,9 @@ class Offer
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoriteOffers')]
     private Collection $users;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $coverPicture = null;
+
     public function __construct()
     {
         $this->setCreatedAt(new \DateTimeImmutable());
@@ -287,6 +290,18 @@ class Offer
         if ($this->users->removeElement($user)) {
             $user->removeFavoriteOffer($this);
         }
+
+        return $this;
+    }
+
+    public function getCoverPicture(): ?string
+    {
+        return $this->coverPicture;
+    }
+
+    public function setCoverPicture(?string $coverPicture): static
+    {
+        $this->coverPicture = $coverPicture;
 
         return $this;
     }

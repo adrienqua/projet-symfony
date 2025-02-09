@@ -1,7 +1,7 @@
 <div class="relative bg-white p-6 rounded-lg shadow-md dark:bg-gray-700 transition-all duration-300 hover:scale-105">
 
 	<a href={{path('app_offer_details', {'id': offer.id} )}}>
-		<img src="https://placehold.co/600x400/png" alt="" class="w-full object-cover rounded-lg">
+		<img src={{offer.coverPicture}} alt={{ offer.title }} class="w-full object-cover rounded-lg aspect-video">
 		<h2 class="text-lg font-semibold dark:text-white mt-2">{{ offer.title }}</h2>
 		<p class=" text-gray-700 dark:text-gray-300">{{ offer.description }}</p>
 	</a>

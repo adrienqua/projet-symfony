@@ -6,6 +6,7 @@ APP\Entity\Offer:
         category: "@category_social"
         renter: "@user_admin3"
         score: 669
+        coverPicture: "/img/offers/1.jpg"
         tasks:
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_social_<numberBetween(1, 5)>"
@@ -21,6 +22,7 @@ APP\Entity\Offer:
         category: "@category_learning"
         renter: "@user_renter_<numberBetween(1, 25)>"
         score: <numberBetween(1, 500)>
+        coverPicture: "/img/offers/2.jpg"
         tasks:
             - "@task_learning_<numberBetween(1, 5)>"
             - "@task_learning_<numberBetween(1, 5)>"
@@ -36,6 +38,7 @@ APP\Entity\Offer:
         category: "@category_entertainment"
         renter: "@user_renter_<numberBetween(1, 25)>"
         score: <numberBetween(1, 500)>
+        coverPicture: "/img/offers/3.jpg"
         tasks:
             - "@task_entertainment_<numberBetween(1, 5)>"
             - "@task_entertainment_<numberBetween(1, 5)>"
@@ -51,6 +54,7 @@ APP\Entity\Offer:
         category: "@category_sport"
         renter: "@user_renter_<numberBetween(1, 25)>"
         score: <numberBetween(1, 500)>
+        coverPicture: "/img/offers/4.jpg"
         tasks:
             - "@task_sport_<numberBetween(1, 5)>"
             - "@task_sport_<numberBetween(1, 5)>"
@@ -66,6 +70,7 @@ APP\Entity\Offer:
         category: "@category_travel"
         renter: "@user_renter_<numberBetween(1, 25)>"
         score: <numberBetween(1, 500)>
+        coverPicture: "/img/offers/5.jpg"
         tasks:
             - "@task_travel_<numberBetween(1, 5)>"
             - "@task_travel_<numberBetween(1, 5)>"
@@ -81,6 +86,7 @@ APP\Entity\Offer:
         category: "@category_helping"
         renter: "@user_renter_<numberBetween(1, 25)>"
         score: <numberBetween(1, 500)>
+        coverPicture: "/img/offers/6.jpg"
         tasks:
             - "@task_helping_<numberBetween(1, 5)>"
             - "@task_helping_<numberBetween(1, 5)>"
@@ -96,6 +102,7 @@ APP\Entity\Offer:
         category: "@category_social"
         renter: "@user_renter_<numberBetween(1, 25)>"
         score: <numberBetween(1, 500)>
+        coverPicture: "/img/offers/7.jpg"
         tasks:
             - "@task_social_<numberBetween(1, 5)>"
             - "@task_social_<numberBetween(1, 5)>"
@@ -111,6 +118,7 @@ APP\Entity\Offer:
         category: "@category_sport"
         renter: "@user_renter_<numberBetween(1, 25)>"
         score: <numberBetween(1, 500)>
+        coverPicture: "/img/offers/8.jpg"
         tasks:
             - "@task_sport_<numberBetween(1, 5)>"
             - "@task_sport_<numberBetween(1, 5)>"
@@ -126,6 +134,7 @@ APP\Entity\Offer:
         category: "@category_learning"
         renter: "@user_renter_<numberBetween(1, 25)>"
         score: <numberBetween(1, 500)>
+        coverPicture: "/img/offers/9.jpg"
         tasks:
             - "@task_learning_<numberBetween(1, 5)>"
             - "@task_learning_<numberBetween(1, 5)>"
@@ -141,6 +150,7 @@ APP\Entity\Offer:
         category: "@category_entertainment"
         renter: "@user_renter_<numberBetween(1, 25)>"
         score: <numberBetween(1, 500)>
+        coverPicture: "/img/offers/10.jpg"
         tasks:
             - "@task_entertainment_<numberBetween(1, 5)>"
             - "@task_entertainment_<numberBetween(1, 5)>"
